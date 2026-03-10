@@ -8,15 +8,132 @@
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+    <!-- Block: App Container -->
     <div class="app">
+        <!-- Block: Screen3 - Ссылки пользователя -->
         <div class="screen3">
             <h1>Экран 3 - Главный дашборд</h1>
             <p>Карточки с запросами и настройками</p>
+
+            <!-- Карточка 1: Партнёрские ссылки -->
+            <div class="card">
+                <h2>Партнёрские ссылки</h2>
+                <p class="card-description">Введите ваши реферальные ссылки в компании PM-International</p>
+                
+                <div class="form-group">
+                    <label for="partnerLink">Партнерская ссылка *</label>
+                    <input 
+                        type="url" 
+                        id="partnerLink" 
+                        class="input-field" 
+                        placeholder="https://www.pmebusiness.com/registration/v2?TP=XXXXXXXX"
+                        required
+                    />
+                    <span class="error-message" id="partnerLinkError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="clientLink">Клиентская ссылка *</label>
+                    <input 
+                        type="url" 
+                        id="clientLink" 
+                        class="input-field" 
+                        placeholder="https://www.fitline.com/?sponsor=XXXXXXXX"
+                        required
+                    />
+                    <span class="error-message" id="clientLinkError"></span>
+                </div>
+            </div>
+
+            <!-- Карточка 2: Ссылки на соцсети -->
+            <div class="card">
+                <h2>Ссылки на соцсети</h2>
+                <p class="card-description">Все поля опциональные</p>
+                
+                <div class="form-group">
+                    <label for="telegram">Telegram (основной аккаунт)</label>
+                    <input 
+                        type="text" 
+                        id="telegram" 
+                        class="input-field" 
+                        placeholder="@username"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="telegramChannel">Telegram канал/чат</label>
+                    <input 
+                        type="url" 
+                        id="telegramChannel" 
+                        class="input-field" 
+                        placeholder="https://t.me/yourchannel"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="instagram">Instagram</label>
+                    <input 
+                        type="url" 
+                        id="instagram" 
+                        class="input-field" 
+                        placeholder="https://instagram.com/username"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="tiktok">TikTok</label>
+                    <input 
+                        type="url" 
+                        id="tiktok" 
+                        class="input-field" 
+                        placeholder="https://tiktok.com/@username"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="vk">ВКонтакте</label>
+                    <input 
+                        type="url" 
+                        id="vk" 
+                        class="input-field" 
+                        placeholder="https://vk.com/username"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input 
+                        type="tel" 
+                        id="whatsapp" 
+                        class="input-field" 
+                        placeholder="+7 (XXX) XXX-XX-XX"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="youtube">YouTube</label>
+                    <input 
+                        type="url" 
+                        id="youtube" 
+                        class="input-field" 
+                        placeholder="https://youtube.com/@channel"
+                    />
+                </div>
+            </div>
+
+            <!-- Кнопка сохранения -->
+            <button id="saveButton" class="save-button" disabled>
+                Сохранить
+            </button>
+
+            <!-- Кнопки навигации (Назад/Далее) -->
+            <div class="nav-buttons">
+                <a href="screen-2.html" class="nav-button nav-button--back">Назад</a>
+                <a href="screen-4.html" class="nav-button nav-button--next">Далее</a>
+            </div>
         </div>
-        <div class="nav-buttons">
-            <a href="screen-2.html" class="nav-button nav-button--back">Назад</a>
-            <a href="screen-4.html" class="nav-button nav-button--next">Далее</a>
-                <!-- Block: Screen Navigation -->
+
+        <!-- Block: Screen Navigation -->
         <div class="screen-nav">
             <a href="index.html" class="screen-nav__button">Главная</a>
             <a href="screen-0.html" class="screen-nav__button">Экран 0</a>
@@ -25,3 +142,180 @@
             <a href="screen-3.html" class="screen-nav__button screen-nav__button--active">Экран 3</a>
             <a href="screen-4.html" class="screen-nav__button">Экран 4</a>
         </div>
+    </div>
+
+    <!-- JavaScript логика для экрана 3 -->
+    <script>
+        // Отслеживание изменений
+        let hasUnsavedChanges = false;
+        let initialFormState = {};
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Элементы формы
+            const partnerLink = document.getElementById('partnerLink');
+            const clientLink = document.getElementById('clientLink');
+            const saveButton = document.getElementById('saveButton');
+            
+            const socialInputs = [
+                document.getElementById('telegram'),
+                document.getElementById('telegramChannel'),
+                document.getElementById('instagram'),
+                document.getElementById('tiktok'),
+                document.getElementById('vk'),
+                document.getElementById('whatsapp'),
+                document.getElementById('youtube')
+            ];
+
+            // Сохраняем начальное состояние формы
+            function saveInitialState() {
+                initialFormState = {
+                    partnerLink: partnerLink.value,
+                    clientLink: clientLink.value,
+                    telegram: document.getElementById('telegram').value,
+                    telegramChannel: document.getElementById('telegramChannel').value,
+                    instagram: document.getElementById('instagram').value,
+                    tiktok: document.getElementById('tiktok').value,
+                    vk: document.getElementById('vk').value,
+                    whatsapp: document.getElementById('whatsapp').value,
+                    youtube: document.getElementById('youtube').value
+                };
+            }
+
+            // Проверка изменений
+            function checkForChanges() {
+                const currentState = {
+                    partnerLink: partnerLink.value,
+                    clientLink: clientLink.value,
+                    telegram: document.getElementById('telegram').value,
+                    telegramChannel: document.getElementById('telegramChannel').value,
+                    instagram: document.getElementById('instagram').value,
+                    tiktok: document.getElementById('tiktok').value,
+                    vk: document.getElementById('vk').value,
+                    whatsapp: document.getElementById('whatsapp').value,
+                    youtube: document.getElementById('youtube').value
+                };
+
+                hasUnsavedChanges = JSON.stringify(initialFormState) !== JSON.stringify(currentState);
+            }
+
+            // Валидация URL
+            function isValidURL(string) {
+                try {
+                    const url = new URL(string);
+                    return url.protocol === 'http:' || url.protocol === 'https:';
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            // Проверка формы
+            function validateForm() {
+                let isValid = true;
+                
+                // Проверка партнерской ссылки
+                const partnerValue = partnerLink.value.trim();
+                const partnerError = document.getElementById('partnerLinkError');
+                if (!partnerValue) {
+                    partnerError.textContent = 'Обязательное поле';
+                    isValid = false;
+                } else if (!isValidURL(partnerValue)) {
+                    partnerError.textContent = 'Неверный формат URL';
+                    isValid = false;
+                } else {
+                    partnerError.textContent = '';
+                }
+
+                // Проверка клиентской ссылки
+                const clientValue = clientLink.value.trim();
+                const clientError = document.getElementById('clientLinkError');
+                if (!clientValue) {
+                    clientError.textContent = 'Обязательное поле';
+                    isValid = false;
+                } else if (!isValidURL(clientValue)) {
+                    clientError.textContent = 'Неверный формат URL';
+                    isValid = false;
+                } else {
+                    clientError.textContent = '';
+                }
+
+                // Активация кнопки сохранения
+                saveButton.disabled = !isValid;
+                
+                return isValid;
+            }
+
+            // Добавление слушателей на обязательные поля
+            partnerLink.addEventListener('input', () => {
+                validateForm();
+                checkForChanges();
+            });
+
+            clientLink.addEventListener('input', () => {
+                validateForm();
+                checkForChanges();
+            });
+
+            // Добавление слушателей на опциональные поля
+            socialInputs.forEach(input => {
+                if (input) {
+                    input.addEventListener('input', checkForChanges);
+                }
+            });
+
+            // Сохранение данных
+            saveButton.addEventListener('click', function() {
+                if (validateForm()) {
+                    // TODO: отправка данных на backend
+                    const formData = {
+                        partnerLink: partnerLink.value.trim(),
+                        clientLink: clientLink.value.trim(),
+                        socialLinks: {
+                            telegram: document.getElementById('telegram').value.trim(),
+                            telegramChannel: document.getElementById('telegramChannel').value.trim(),
+                            instagram: document.getElementById('instagram').value.trim(),
+                            tiktok: document.getElementById('tiktok').value.trim(),
+                            vk: document.getElementById('vk').value.trim(),
+                            whatsapp: document.getElementById('whatsapp').value.trim(),
+                            youtube: document.getElementById('youtube').value.trim()
+                        }
+                    };
+
+                    console.log('Сохранённые данные:', formData);
+                    
+                    // Обновляем начальное состояние после сохранения
+                    saveInitialState();
+                    hasUnsavedChanges = false;
+                    
+                    alert('Данные успешно сохранены!');
+                }
+            });
+
+            // Предупреждение о несохранённых изменениях
+            window.addEventListener('beforeunload', function(e) {
+                if (hasUnsavedChanges) {
+                    e.preventDefault();
+                    e.returnValue = 'Есть несохранённые изменения. Выйти без сохранения?';
+                    return e.returnValue;
+                }
+            });
+
+            // Предупреждение при переходе по ссылкам навигации
+            const navLinks = document.querySelectorAll('.nav-button, .screen-nav__button');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (hasUnsavedChanges) {
+                        const confirmLeave = confirm('Есть несохранённые изменения. Выйти без сохранения?');
+                        if (!confirmLeave) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+            });
+
+            // Инициализация
+            saveInitialState();
+            validateForm();
+        });
+    </script>
+</body>
+</html>
