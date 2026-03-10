@@ -4,259 +4,74 @@
   <!--
     index.html — Экран 0 (авторизация + согласия)
     Перенесено из screen-0.html.
-    Адаптация: поменять service_title, ссылки на политику и обработку ПД,
-    а также цвета/градиент в разделе THEME COLORS.
+    Адаптация: поменять service_title, ссылки на политику и обработку ПД.
   -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI FIT CENTER — Авторизация</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
-    /* =====================
-       THEME COLORS
-       Меняй под каждый проект:
-       --color-primary, --color-secondary, --bg-from, --bg-to, --particle-color
-    ===================== */
-    :root {
-      --color-primary: #4DA3FF;
-      --color-secondary: #1B4F9C;
-      --bg-from: #050816;
-      --bg-to: #00BFFF;
-      --color-text: #FFFFFF;
-      --color-card-bg: rgba(255, 255, 255, 0.07);
-    }
-
-    /* =====================
-       ANIMATED BACKGROUND SETTINGS
-       Меняй градиент фона здесь
-    ===================== */
-    @keyframes gradientShift {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      color: var(--color-text);
-      /* Block: AnimatedBackground */
-      background: linear-gradient(135deg, var(--bg-from), var(--color-secondary), var(--bg-to));
-      background-size: 300% 300%;
-      animation: gradientShift 8s ease infinite;
-    }
-
-    /* Styles: AnimatedBackground */
-    @media (prefers-reduced-motion: reduce) {
-      body {
-        animation: none;
-        background: var(--bg-from);
-      }
-    }
-
-    /* Block: AppHeader */
-    .app-header {
-      text-align: center;
-      padding: 48px 24px 24px;
-    }
-
-    /* LOGO CONFIG — замени src на свой логотип */
-    .app-header__logo {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 16px;
-      border-radius: 16px;
-      background: var(--color-primary);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-    }
-
-    /* service_title — название сервиса, меняй под проект */
-    .app-header__title {
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      color: var(--color-text);
-    }
-
-    /* Block: ConsentCard */
-    .consent-card {
-      background: var(--color-card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
-      padding: 24px;
-      margin: 24px 16px;
-    }
-
-    /* Styles: ConsentCard */
-    .consent-card__title {
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.6);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-    }
-
-    .consent-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .consent-item:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Кастомный чек-бокс */
-    .consent-item input[type="checkbox"] {
-      display: none;
-    }
-
-    .consent-item__box {
-      width: 22px;
-      height: 22px;
-      min-width: 22px;
-      border: 2px solid var(--color-primary);
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-
-    .consent-item input[type="checkbox"]:checked + .consent-item__box {
-      background: var(--color-primary);
-    }
-
-    .consent-item input[type="checkbox"]:checked + .consent-item__box::after {
-      content: '\2713';
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    /* Кликабельная надпись */
-    .consent-item__label {
-      font-size: 14px;
-      line-height: 1.5;
-      cursor: pointer;
-      color: var(--color-text);
-    }
-
-    .consent-item__label a {
-      color: var(--color-primary);
-      text-decoration: underline;
-    }
-
-    /* Block: AuthButton */
-    .auth-section {
-      padding: 16px 16px 32px;
-    }
-
-    /* Styles: AuthButton */
-    .btn-auth {
-      width: 100%;
-      padding: 16px;
-      background: var(--color-primary);
-      color: #fff;
-      border: none;
-      border-radius: 14px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.1s;
-    }
-
-    .btn-auth:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .btn-auth:not(:disabled):active {
-      transform: scale(0.98);
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <div class="app">
 
-  <!-- Block: AppHeader -->
-  <!-- LOGO CONFIG: замени эмодзи на <img> с нужным логотипом -->
-  <header class="app-header">
-    <div class="app-header__logo">&#129504;</div>
-    <!-- service_title: замени текст ниже на название сервиса -->
-    <h1 class="app-header__title">AI FIT CENTER</h1>
-  </header>
+    <!-- Block: ConsentCard -->
+    <div class="app__card">
+      <h1 style="text-align: center; margin-bottom: 32px; font-size: 28px; color: #1a1a1a;">
+        AI FIT CENTER
+      </h1>
 
-  <!-- Block: ConsentCard -->
-  <div class="consent-card">
-    <p class="consent-card__title">Для начала работы</p>
+      <p style="font-size: 14px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">
+        Для начала работы
+      </p>
 
-    <!-- Чек-бокс 1: Политика конфиденциальности -->
-    <label class="consent-item">
-      <input type="checkbox" id="chk-privacy" />
-      <span class="consent-item__box"></span>
-      <span class="consent-item__label">
-        Согласен(на) с
-        <!-- замени href на реальную ссылку на политику конфиденциальности -->
-        <a href="#" target="_blank">политикой конфиденциальности</a>
-      </span>
-    </label>
+      <!-- Чек-бокс 1: Политика конфиденциальности -->
+      <label style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; cursor: pointer;">
+        <input type="checkbox" id="chk-privacy" />
+        <span>
+          Согласен(на) с
+          <a href="#" target="_blank" style="color: #3b82f6; text-decoration: underline;">политикой конфиденциальности</a>
+        </span>
+      </label>
 
-    <!-- Чек-бокс 2: Обработка персональных данных -->
-    <label class="consent-item">
-      <input type="checkbox" id="chk-personal" />
-      <span class="consent-item__box"></span>
-      <span class="consent-item__label">
-        Согласен(на) с
-        <!-- замени href на реальную ссылку на согласие с ОПД -->
-        <a href="#" target="_blank">обработкой персональных данных</a>
-      </span>
-    </label>
-  </div>
+      <!-- Чек-бокс 2: Обработка персональных данных -->
+      <label style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; cursor: pointer;">
+        <input type="checkbox" id="chk-personal" />
+        <span>
+          Согласен(на) с
+          <a href="#" target="_blank" style="color: #3b82f6; text-decoration: underline;">обработкой персональных данных</a>
+        </span>
+      </label>
 
-  <!-- Block: AuthButton -->
-  <div class="auth-section">
-    <button class="btn-auth" id="btn-auth" disabled>
-      Войти через Telegram
-    </button>
+      <!-- Block: AuthButton -->
+      <button id="btn-auth" disabled style="width: 100%; padding: 16px; background: #3b82f6; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s;">
+        Войти через Telegram
+      </button>
+    </div>
+
   </div>
 
   <script>
     // Block: ConsentLogic
-    // Кнопка активна только когда оба чек-бокса отмечены
     const chkPrivacy  = document.getElementById('chk-privacy');
     const chkPersonal = document.getElementById('chk-personal');
     const btnAuth     = document.getElementById('btn-auth');
 
     function updateBtn() {
       btnAuth.disabled = !(chkPrivacy.checked && chkPersonal.checked);
+      btnAuth.style.opacity = btnAuth.disabled ? '0.4' : '1';
     }
 
     chkPrivacy.addEventListener('change', updateBtn);
     chkPersonal.addEventListener('change', updateBtn);
 
     // Block: TelegramAuth
-    // Авторизация через Telegram WebApp
     btnAuth.addEventListener('click', () => {
       const tg = window.Telegram && window.Telegram.WebApp;
       if (tg) {
-        // initData передаётся на backend для верификации
         const initData = tg.initData;
-        // TODO: отправь initData на backend POST /api/auth/telegram
-        // После успешной авторизации — переход на screen-1.html
         console.log('Telegram initData:', initData);
+        // TODO: отправь initData на backend POST /api/auth/telegram
         // window.location.href = 'screen-1.html';
       } else {
         alert('Откройте приложение в Telegram');
