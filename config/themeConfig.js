@@ -56,6 +56,20 @@ const themeConfig = {
     dataProcessingText: "Согласен с обработкой персональных данных",
     buttonText: "Продолжить"
   }
+  
+  // ======================
+  // Тексты экрана 1 (профиль/статус)
+  // ======================
+  screen1: {
+    statusAuthorized: "Авторизован",
+    statusActive: "Активен до",
+    statusDaysLeft: "Осталось",
+    statusDaysUnit: "дней",
+    statusUnlimited: "Безлимит",
+    usernamePlaceholder: "@username",
+    avatarPlaceholderBg: "#3b82f6",  // Цвет фона плейсхолдера аватара
+    avatarPlaceholderText: "#ffffff" // Цвет инициалов в плейсхолдере
+  }
 };
 
 // Экспорт конфигурации
