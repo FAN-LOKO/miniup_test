@@ -1,0 +1,117 @@
+/* =============================
+   Styles: Screen0 (Авторизация)
+   ============================= */
+
+.screen0 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* Block: Header */
+.screen0__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.screen0__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.screen0__subtitle {
+  font-size: 18px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+/* Block: Form */
+.screen0__form {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Block: Checkbox */
+.screen0__checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.screen0__checkbox-label:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.screen0__checkbox {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.screen0__checkbox-text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #374151;
+  flex: 1;
+}
+
+.screen0__link {
+  color: #3b82f6;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.screen0__link:hover {
+  color: #0b3c78;
+}
+
+/* Block: Button */
+.screen0__button {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #3b82f6, #0b3c78);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 12px;
+  opacity: 0.5;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.screen0__button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.screen0__button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.screen0__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
