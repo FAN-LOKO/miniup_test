@@ -1,31 +1,35 @@
 /*
   css/styles.css — Единый стиль для всех экранов MiniApp
-  Мягкий морской градиент-фон с плавной анимацией
+  Мягкий океанский градиент-фон с плавной анимацией
 */
 
-/* ===========================
+/* =============================
    GLOBAL RESET
-   =========================== */
+   ============================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===========================
+/* =============================
    HTML & BODY
-   =========================== */
+   ============================= */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+/* =============================
+   ANIMATED OCEAN GRADIENT BACKGROUND
+   ============================= */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Helvetica Neue', Arial, sans-serif;
+               'Ubuntu', 'Cantarell', 'Helvetica Neue', Arial, sans-serif;
   color: #1a1a1a;
-  /* Animated ocean gradient background */
+  
+  /* Мягкий океанский градиент (светлые тона) */
   background: linear-gradient(
     -45deg,
     #cfe9ff,  /* очень светлый голубой */
@@ -34,13 +38,10 @@ body {
     #0b3c78   /* тёмный морской синий */
   );
   background-size: 400% 400%;
-  animation: oceanWave 30s ease-in-out infinite;
-  /* Prevent horizontal scroll */
-  overflow-x: hidden;
+  animation: oceanGradient 30s ease infinite;
 }
 
-/* Keyframes for smooth gradient animation */
-@keyframes oceanWave {
+@keyframes oceanGradient {
   0% {
     background-position: 0% 50%;
   }
@@ -52,48 +53,15 @@ body {
   }
 }
 
-/* Fallback for users with reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-  body {
-    animation: none;
-    background: #3b82f6; /* статичный синий */
-  }
-}
-
-/* ===========================
-   MAIN APP CONTAINER
-   =========================== */
+/* =============================
+   APP CONTAINER
+   ============================= */
 .app {
+  max-width: 480px;
+  margin: 0 auto;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 16px;
-  /* Semi-transparent dark overlay for readability */
-  background: rgba(0, 20, 60, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* Optional: Card/section styling for content blocks */
-.app__card {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 16px;
-  padding: 24px;
-  margin: 12px 0;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .app {
-    padding: 12px;
-  }
-  .app__card {
-    padding: 20px;
-    border-radius: 12px;
-  }
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
