@@ -65,3 +65,44 @@ body {
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
+
+/* =============================
+   SCREEN NAVIGATION BUTTONS
+   ============================= */
+
+.screen-nav {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px 0;
+}
+
+.screen-nav__button {
+    padding: 10px 15px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.screen-nav__button:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.screen-nav__button--active {
+    background: #4A90E2;
+    color: white;
+    border-color: #4A90E2;
+}
+
+.screen-nav__button--active:hover {
+    background: #357ABD;
+    border-color: #357ABD;
+}
