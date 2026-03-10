@@ -1,83 +1,107 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <!--
-    index.html — Экран 0 (авторизация + согласия)
-    Перенесено из screen-0.html.
-    Адаптация: поменять service_title, ссылки на политику и обработку ПД.
-  -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI FIT CENTER — Авторизация</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="css/styles.css" />
+    <!-- index.html — Экран 0 (авторизация + согласия) -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI FIT CENTER — Авторизация</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="config/themeConfig.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <div class="app">
-
-    <!-- Block: ConsentCard -->
-    <div class="app__card">
-      <h1 style="text-align: center; margin-bottom: 32px; font-size: 28px; color: #1a1a1a;">
-        AI FIT CENTER
-      </h1>
-
-      <p style="font-size: 14px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">
-        Для начала работы
-      </p>
-
-      <!-- Чек-бокс 1: Политика конфиденциальности -->
-      <label style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; cursor: pointer;">
-        <input type="checkbox" id="chk-privacy" />
-        <span>
-          Согласен(на) с
-          <a href="#" target="_blank" style="color: #3b82f6; text-decoration: underline;">политикой конфиденциальности</a>
-        </span>
-      </label>
-
-      <!-- Чек-бокс 2: Обработка персональных данных -->
-      <label style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; cursor: pointer;">
-        <input type="checkbox" id="chk-personal" />
-        <span>
-          Согласен(на) с
-          <a href="#" target="_blank" style="color: #3b82f6; text-decoration: underline;">обработкой персональных данных</a>
-        </span>
-      </label>
-
-      <!-- Block: AuthButton -->
-      <button id="btn-auth" disabled style="width: 100%; padding: 16px; background: #3b82f6; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s;">
-        Войти через Telegram
-      </button>
+    <!-- Block: App Container -->
+    <div class="app">
+        
+        <!-- Block: Screen0 - Авторизация + Согласия -->
+        <div class="screen0">
+            
+            <!-- Block: Header -->
+            <div class="screen0__header">
+                <h1 class="screen0__title" id="appTitle">AI FIT CENTER</h1>
+                <p class="screen0__subtitle" id="appSubtitle">Добро пожаловать!</p>
+            </div>
+            
+            <!-- Block: Consent Form -->
+            <form class="screen0__form" id="consentForm">
+                
+                <!-- Checkbox 1: Политика конфиденциальности -->
+                <label class="screen0__checkbox-label">
+                    <input type="checkbox" id="privacyCheckbox" class="screen0__checkbox" required />
+                    <span class="screen0__checkbox-text">
+                        Согласен с 
+                        <a href="#" class="screen0__link">политикой конфиденциальности</a>
+                    </span>
+                </label>
+                
+                <!-- Checkbox 2: Обработка персональных данных -->
+                <label class="screen0__checkbox-label">
+                    <input type="checkbox" id="dataProcessingCheckbox" class="screen0__checkbox" required />
+                    <span class="screen0__checkbox-text">
+                        Согласен с 
+                        <a href="#" class="screen0__link">обработкой персональных данных</a>
+                    </span>
+                </label>
+                
+                <!-- Block: Submit Button -->
+                <button type="submit" class="screen0__button" id="authButton" disabled>
+                    Продолжить
+                </button>
+                
+            </form>
+            
+        </div>
+        
     </div>
-
-  </div>
-
-  <script>
-    // Block: ConsentLogic
-    const chkPrivacy  = document.getElementById('chk-privacy');
-    const chkPersonal = document.getElementById('chk-personal');
-    const btnAuth     = document.getElementById('btn-auth');
-
-    function updateBtn() {
-      btnAuth.disabled = !(chkPrivacy.checked && chkPersonal.checked);
-      btnAuth.style.opacity = btnAuth.disabled ? '0.4' : '1';
-    }
-
-    chkPrivacy.addEventListener('change', updateBtn);
-    chkPersonal.addEventListener('change', updateBtn);
-
-    // Block: TelegramAuth
-    btnAuth.addEventListener('click', () => {
-      const tg = window.Telegram && window.Telegram.WebApp;
-      if (tg) {
-        const initData = tg.initData;
-        console.log('Telegram initData:', initData);
-        // TODO: отправь initData на backend POST /api/auth/telegram
-        // window.location.href = 'screen-1.html';
-      } else {
-        alert('Откройте приложение в Telegram');
-      }
-    });
-  </script>
-
+    
+    <!-- Block: Authorization Script -->
+    <script>
+        // Инициализация Telegram WebApp
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Элементы
+        const privacyCheckbox = document.getElementById('privacyCheckbox');
+        const dataProcessingCheckbox = document.getElementById('dataProcessingCheckbox');
+        const authButton = document.getElementById('authButton');
+        const consentForm = document.getElementById('consentForm');
+        
+        // Проверка состояния чекбоксов
+        function checkForm() {
+            if (privacyCheckbox.checked && dataProcessingCheckbox.checked) {
+                authButton.disabled = false;
+                authButton.style.opacity = '1';
+                authButton.style.cursor = 'pointer';
+            } else {
+                authButton.disabled = true;
+                authButton.style.opacity = '0.5';
+                authButton.style.cursor = 'not-allowed';
+            }
+        }
+        
+        // Слушатели изменений чекбоксов
+        privacyCheckbox.addEventListener('change', checkForm);
+        dataProcessingCheckbox.addEventListener('change', checkForm);
+        
+        // Обработка отправки формы
+        consentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Сохраняем согласия в localStorage
+            localStorage.setItem('privacyConsent', 'true');
+            localStorage.setItem('dataProcessingConsent', 'true');
+            localStorage.setItem('authorized', 'true');
+            
+            // Переход на экран 1
+            window.location.href = 'screen-1.html';
+        });
+        
+        // Проверка при загрузке - если уже авторизован, перенаправляем
+        if (localStorage.getItem('authorized') === 'true') {
+            window.location.href = 'screen-1.html';
+        }
+    </script>
+    
 </body>
 </html>
