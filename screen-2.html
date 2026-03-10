@@ -10,12 +10,49 @@
 <body>
     <!-- Block: App Container -->
     <div class="app">
-        <!-- Block: Screen2 - Подключение агента -->
+                <!-- Block: Screen2 - Подключение агента -->
         <div class="screen2">
             <h1>Экран 2 - Подключение агента</h1>
-            <p>Здесь будет форма подключения бота пользователя через ввод токена.</p>
+            
+            <!-- Блок: Инструкция (сворачиваемый accordion) -->
+            <div class="instruction-accordion">
+                <button class="accordion-header" id="instructionToggle">
+                    Как получить токен?
+                </button>
+                <div class="accordion-content" id="instructionContent">
+                    <ol>
+                        <li>Откройте @BotFather в Telegram</li>
+                        <li>Отправьте команду /mybots</li>
+                        <li>Выберите вашего бота</li>
+                        <li>Нажмите "API Token"</li>
+                        <li>Скопируйте токен и вставьте его ниже</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Блок: Поле токена -->
+            <div class="token-input-section">
+                <label for="botToken">Введите токен бота</label>
+                <input 
+                    type="text" 
+                    id="botToken" 
+                    class="token-input" 
+                    placeholder="Пример: 123456789:AAAbbbCCC..."
+                />
+                <button 
+                    id="connectButton" 
+                    class="connect-button" 
+                    disabled
+                >
+                    Подключить
+                </button>
+            </div>
+
+            <!-- Блок: Статус -->
+            <div class="status-section">
+                <p id="connectionStatus" class="status-message">Не подключено</p>
+            </div>
         </div>
-        
                 <!-- Block: Screen Navigation -->
         <div class="screen-nav">
             <a href="index.html" class="screen-nav__button">Главная</a>
