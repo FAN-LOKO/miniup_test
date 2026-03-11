@@ -7,47 +7,47 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
-
 <body>
-    <!-- Block: App Container -->
     <div class="app">
-        <!-- Block: Screen1 - Профиль/Статус -->
         <div class="screen1">
             <h1>Профиль/Статус</h1>
 
-            <!-- Блок: Информация о статусе -->
-            <div class="status-info">
-                <h2>Статус авторизации</h2>
-                <p id="statusAuthorized">Авторизован</p>
-            </div>
-
-            <!-- Блок: Данные пользователя -->
-            <div class="user-data">
-                <h2>Данные пользователя</h2>
-
-                <!-- Аватар пользователя -->
-                <div class="user-avatar">
-                    <img id="userAvatar" src="https://via.placeholder.com/100" alt="Аватар пользователя" />
-                </div>
-
-                <!-- Имя пользователя -->
-                <div class="user-info">
-                    <p><strong>Имя пользователя:</strong> <span id="userName">@username</span></p>
-                </div>
-
-                <!-- Статус подписки -->
-                <div class="subscription-status">
-                    <p><strong>Статус подписки:</strong> <span id="subscriptionStatus">Активна</span></p>
-                </div>
-
-                <!-- Осталось дней -->
-                <div class="days-left">
-                    <p><strong>Осталось дней:</strong> <span id="daysLeft">30</span></p>
+            <!-- Карточка: Статус авторизации -->
+            <div class="card">
+                <div class="card__row">
+                    <span class="card__label">Статус авторизации</span>
+                    <span class="card__value card__value--success" id="authStatus">Авторизован</span>
                 </div>
             </div>
+
+            <!-- Карточка: Данные пользователя -->
+            <div class="card">
+                <div class="card__header">Данные пользователя</div>
+                <div class="card__body card__body--centered">
+                    <img id="userAvatar" class="user-avatar" src="" alt="Аватар" />
+                    <p class="user-name" id="userName">@username</p>
+                </div>
+            </div>
+
+            <!-- Карточка: Подписка -->
+            <div class="card">
+                <div class="card__header">Подписка</div>
+                <div class="card__body">
+                    <div class="card__row">
+                        <span class="card__label">Статус подписки</span>
+                        <span class="card__value card__value--success" id="subscriptionStatus">Активна</span>
+                    </div>
+                    <div class="card__row">
+                        <span class="card__label">Осталось дней</span>
+                        <span class="card__value" id="daysLeft">30</span>
+                    </div>
+                    <button class="pay-button" id="payButton">Оплатить</button>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Block: Screen Navigation -->
+        <!-- Навигация -->
         <div class="screen-nav">
             <a href="screen-1.html" class="screen-nav__button screen-nav__button--active">Профиль</a>
             <a href="screen-2.html" class="screen-nav__button">Агент</a>
@@ -56,6 +56,142 @@
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <style>
+        .screen1 {
+            padding: 16px;
+        }
+        .screen1 h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0b3c78;
+            margin-bottom: 16px;
+            padding-left: 4px;
+        }
+
+        /* Карточка */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+        .card__header {
+            background: #4A90E2;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 12px 16px;
+        }
+        .card__body {
+            padding: 12px 16px;
+        }
+        .card__body--centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px;
+            gap: 10px;
+        }
+
+        /* Строка label + value */
+        .card__row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .card__row:last-child {
+            border-bottom: none;
+        }
+        .card__label {
+            font-size: 14px;
+            color: #555;
+        }
+        .card__value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .card__value--success {
+            color: #4CAF50;
+        }
+        .card__value--error {
+            color: #f44336;
+        }
+
+        /* Аватар */
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4A90E2;
+            background: #e0e0e0;
+        }
+        .user-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        /* Кнопка Оплатить */
+        .pay-button {
+            display: block;
+            width: calc(100% - 0px);
+            margin: 4px 0 4px 0;
+            padding: 12px;
+            background: #4A90E2;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .pay-button:hover {
+            background: #357ABD;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+
+            // Аватар и имя из Telegram
+            const user = tg.initDataUnsafe && tg.initDataUnsafe.user;
+            if (user) {
+                document.getElementById('userName').textContent =
+                    (user.username ? '@' + user.username : (user.first_name || '') + ' ' + (user.last_name || ''));
+                if (user.photo_url) {
+                    document.getElementById('userAvatar').src = user.photo_url;
+                } else {
+                    document.getElementById('userAvatar').src = 'https://via.placeholder.com/80';
+                }
+            } else {
+                document.getElementById('userAvatar').src = 'https://via.placeholder.com/80';
+            }
+
+            // Проверка авторизации
+            const authorized = localStorage.getItem('authorized') === 'true';
+            const authEl = document.getElementById('authStatus');
+            if (authorized) {
+                authEl.textContent = 'Авторизован';
+                authEl.className = 'card__value card__value--success';
+            } else {
+                authEl.textContent = 'Не авторизован';
+                authEl.className = 'card__value card__value--error';
+            }
+
+            // Кнопка Оплатить
+            document.getElementById('payButton').addEventListener('click', function () {
+                tg.showAlert('Функция оплаты будет добавлена в следующем обновлении.');
+            });
+        });
+    </script>
 </body>
 </html>
