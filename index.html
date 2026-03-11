@@ -13,71 +13,60 @@
 <body>
     <!-- Block: App Container -->
     <div class="app">
-        
+
         <!-- Block: Screen0 - Авторизация + Согласия -->
         <div class="screen0">
-            
+
             <!-- Block: Header -->
             <div class="screen0__header">
                 <h1 class="screen0__title" id="appTitle">AI FIT CENTER</h1>
                 <p class="screen0__subtitle" id="appSubtitle">Добро пожаловать!</p>
             </div>
-            
+
             <!-- Block: Consent Form -->
             <form class="screen0__form" id="consentForm">
-                
+
                 <!-- Checkbox 1: Политика конфиденциальности -->
                 <label class="screen0__checkbox-label">
                     <input type="checkbox" id="privacyCheckbox" class="screen0__checkbox" required />
                     <span class="screen0__checkbox-text">
-                        Согласен с 
+                        Согласен с
                         <a href="#" class="screen0__link">политикой конфиденциальности</a>
                     </span>
                 </label>
-                
+
                 <!-- Checkbox 2: Обработка персональных данных -->
                 <label class="screen0__checkbox-label">
                     <input type="checkbox" id="dataProcessingCheckbox" class="screen0__checkbox" required />
                     <span class="screen0__checkbox-text">
-                        Согласен с 
+                        Согласен с
                         <a href="#" class="screen0__link">обработкой персональных данных</a>
                     </span>
                 </label>
-                
+
                 <!-- Block: Submit Button -->
                 <button type="submit" class="screen0__button" id="authButton" disabled>
-                    Продолжить
+                    Авторизоваться
                 </button>
-                
+
             </form>
-            
+
         </div>
 
-                <!-- Block: Screen Navigation -->
-        <div class="screen-nav">
-            <a href="index.html" class="screen-nav__button screen-nav__button--active">Главная</a>
-            <a href="screen-0.html" class="screen-nav__button">Экран 0</a>
-            <a href="screen-1.html" class="screen-nav__button">Экран 1</a>
-            <a href="screen-2.html" class="screen-nav__button">Экран 2</a>
-            <a href="screen-3.html" class="screen-nav__button">Экран 3</a>
-            <a href="screen-4.html" class="screen-nav__button">Экран 4</a>
-        </div>
-        
     </div>
-    
-    <!-- Block: Authorization Script -->
+
     <script>
         // Инициализация Telegram WebApp
         const tg = window.Telegram.WebApp;
         tg.ready();
         tg.expand();
-        
+
         // Элементы
         const privacyCheckbox = document.getElementById('privacyCheckbox');
         const dataProcessingCheckbox = document.getElementById('dataProcessingCheckbox');
         const authButton = document.getElementById('authButton');
         const consentForm = document.getElementById('consentForm');
-        
+
         // Проверка состояния чекбоксов
         function checkForm() {
             if (privacyCheckbox.checked && dataProcessingCheckbox.checked) {
@@ -90,29 +79,29 @@
                 authButton.style.cursor = 'not-allowed';
             }
         }
-        
+
         // Слушатели изменений чекбоксов
         privacyCheckbox.addEventListener('change', checkForm);
         dataProcessingCheckbox.addEventListener('change', checkForm);
-        
+
+        // Вызов при загрузке страницы
+        checkForm();
+
         // Обработка отправки формы
         consentForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             // Сохраняем согласия в localStorage
             localStorage.setItem('privacyConsent', 'true');
             localStorage.setItem('dataProcessingConsent', 'true');
             localStorage.setItem('authorized', 'true');
-            
             // Переход на экран 1
             window.location.href = 'screen-1.html';
         });
-        
+
         // Проверка при загрузке - если уже авторизован, перенаправляем
         if (localStorage.getItem('authorized') === 'true') {
             window.location.href = 'screen-1.html';
         }
     </script>
-    
 </body>
 </html>
