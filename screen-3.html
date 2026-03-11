@@ -53,6 +53,21 @@
                         <input type="url" id="socialInst" class="form-input" placeholder="https://instagram.com/..." />
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-label">Vkontakte</label>
+                        <input type="url" id="socialVk" class="form-input" placeholder="https://vk.com/..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">YouTube</label>
+                        <input type="url" id="socialYt" class="form-input" placeholder="https://youtube.com/..." />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">TikTok</label>
+                        <input type="url" id="socialTt" class="form-input" placeholder="https://tiktok.com/..." />
+                    </div>
+
                     <button class="save-button" id="saveSocialLinks">Сохранить</button>
                 </div>
             </div>
@@ -85,16 +100,17 @@
         .form-input:focus { border-color: #4A90E2; background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1); }
 
         /* Кнопка сохранить */
-        .save-button { width: 100%; padding: 12px; background: #4CAF50; color: #ffffff; font-size: 15px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
-        .save-button:hover { background: #45a049; }
+        .save-button { width: 100%; padding: 12px; background: #4A90E2; color: #ffffff; font-size: 15px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .save-button:hover { background: #357ABD; }
         .save-button:active { transform: scale(0.98); }
     </style>
 
     <script>
-feat: redesign screen-3 (Links) with card layout, persistence, separate save buttons            const tg = window.Telegram.WebApp;
+        document.addEventListener('DOMContentLoaded', function() {
+            const tg = window.Telegram.WebApp;
             tg.ready();
 
-            const fieldIds = ['partnerLink', 'clientLink', 'socialTg', 'socialWa', 'socialInst'];
+            const fieldIds = ['partnerLink', 'clientLink', 'socialTg', 'socialWa', 'socialInst', 'socialVk', 'socialYt', 'socialTt'];
             const fields = {};
             fieldIds.forEach(id => fields[id] = document.getElementById(id));
 
@@ -109,7 +125,6 @@ feat: redesign screen-3 (Links) with card layout, persistence, separate save but
                     localStorage.setItem(id, fields[id].value.trim());
                 });
                 tg.HapticFeedback.notificationOccurred('success');
-                // Визуальное подтверждение
                 tg.showPopup({
                     title: 'Успех',
                     message: 'Ссылки сохранены!',
@@ -118,7 +133,7 @@ feat: redesign screen-3 (Links) with card layout, persistence, separate save but
             }
 
             document.getElementById('savePartnerLinks').addEventListener('click', () => saveSet(['partnerLink', 'clientLink']));
-            document.getElementById('saveSocialLinks').addEventListener('click', () => saveSet(['socialTg', 'socialWa', 'socialInst']));
+            document.getElementById('saveSocialLinks').addEventListener('click', () => saveSet(['socialTg', 'socialWa', 'socialInst', 'socialVk', 'socialYt', 'socialTt']));
         });
     </script>
 </body>
