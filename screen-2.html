@@ -13,7 +13,7 @@
                 <!-- Block: Screen2 - Подключение агента -->
         <div class="screen2">
             <h1>Экран 2 - Подключение агента</h1>
-            
+
             <!-- Блок: Инструкция (сворачиваемый accordion) -->
             <div class="instruction-accordion">
                 <button class="accordion-header" id="instructionToggle">
@@ -33,15 +33,15 @@
             <!-- Блок: Поле токена -->
             <div class="token-input-section">
                 <label for="botToken">Введите токен бота</label>
-                <input 
-                    type="text" 
-                    id="botToken" 
-                    class="token-input" 
+                <input
+                    type="text"
+                    id="botToken"
+                    class="token-input"
                     placeholder="Пример: 123456789:AAAbbbCCC..."
                 />
-                <button 
-                    id="connectButton" 
-                    class="connect-button" 
+                <button
+                    id="connectButton"
+                    class="connect-button"
                     disabled
                 >
                     Подключить
@@ -53,213 +53,73 @@
                 <p id="connectionStatus" class="status-message">Не подключено</p>
             </div>
         </div>
-                <!-- Block: Screen Navigation -->
-        <div class="screen-nav">
-            <a href="index.html" class="screen-nav__button">Главная</a>
-            <a href="screen-0.html" class="screen-nav__button">Экран 0</a>
-            <a href="screen-1.html" class="screen-nav__button">Экран 1</a>
-            <a href="screen-2.html" class="screen-nav__button screen-nav__button--active">Экран 2</a>
-            <a href="screen-3.html" class="screen-nav__button">Экран 3</a>
-            <a href="screen-4.html" class="screen-nav__button">Экран 4</a>
-        </div>v>
 
-            <!-- Встроенные стили для экрана 2 -->
+        <!-- Block: Screen Navigation -->
+        <div class="screen-nav">
+            <a href="screen-1.html" class="screen-nav__button">Профиль</a>
+            <a href="screen-2.html" class="screen-nav__button screen-nav__button--active">Агент</a>
+            <a href="screen-3.html" class="screen-nav__button">Ссылки</a>
+            <a href="screen-4.html" class="screen-nav__button">CRM</a>
+        </div>
+    </div>
+
     <style>
-        .screen2 {
-            padding: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .instruction-accordion {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .accordion-header {
-            width: 100%;
-            padding: 15px;
-            background: #4A90E2;
-            color: white;
-            border: none;
-            text-align: left;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .accordion-header:hover {
-            background: #357ABD;
-        }
-        
-        .accordion-content {
-            padding: 15px;
-            background: #f9f9f9;
-            display: none;
-        }
-        
-        .accordion-content.active {
-            display: block;
-        }
-        
-        .accordion-content ol {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        
-        .accordion-content li {
-            margin: 8px 0;
-        }
-        
-        .token-input-section {
-            margin-bottom: 20px;
-        }
-        
-        .token-input-section label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        
-        .token-input {
-            width: 100%;
-            padding: 12px;
-            font-size: 14px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-        
-        .connect-button {
-            padding: 12px 24px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        
-        .connect-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-        
-        .connect-button:not(:disabled):hover {
-            background: #45a049;
-        }
-        
-        .status-section {
-            padding: 15px;
-            border-radius: 4px;
-            background: #f0f0f0;
-        }
-        
-        .status-message {
-            margin: 0;
-            font-weight: bold;
-        }
-        
-        .status-message.loading {
-            color: #FFA500;
-        }
-        
-        .status-message.success {
-            color: #4CAF50;
-        }
-        
-        .status-message.error {
-            color: #f44336;
-        }
-        
-        .screen-nav {
-            display: flex;
-            gap: 10px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .screen-nav__button {
-            padding: 10px 15px;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            text-decoration: none;
-            color: #333;
-        }
-        
-        .screen-nav__button--active {
-            background: #4A90E2;
-            color: white;
-        }
+        .screen2 { padding: 20px; max-width: 600px; margin: 0 auto; }
+        .instruction-accordion { margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+        .accordion-header { width: 100%; padding: 15px; background: #4A90E2; color: white; border: none; text-align: left; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .accordion-header:hover { background: #357ABD; }
+        .accordion-content { padding: 15px; background: #f9f9f9; display: none; }
+        .accordion-content.active { display: block; }
+        .accordion-content ol { margin: 10px 0; padding-left: 20px; }
+        .accordion-content li { margin: 8px 0; }
+        .token-input-section { margin-bottom: 20px; }
+        .token-input-section label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .token-input { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; margin-bottom: 10px; }
+        .connect-button { padding: 12px 24px; background: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        .connect-button:disabled { background: #ccc; cursor: not-allowed; }
+        .connect-button:not(:disabled):hover { background: #45a049; }
+        .status-section { padding: 15px; border-radius: 4px; background: #f0f0f0; }
+        .status-message { margin: 0; font-weight: bold; }
+        .status-message.loading { color: #FFA500; }
+        .status-message.success { color: #4CAF50; }
+        .status-message.error { color: #f44336; }
     </style>
 
-    <!-- JavaScript логика для экрана 2 -->
     <script>
-        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
-            // Элементы
             const instructionToggle = document.getElementById('instructionToggle');
             const instructionContent = document.getElementById('instructionContent');
             const botTokenInput = document.getElementById('botToken');
             const connectButton = document.getElementById('connectButton');
             const connectionStatus = document.getElementById('connectionStatus');
-            
-            // Accordion toggle
+
             instructionToggle.addEventListener('click', function() {
                 instructionContent.classList.toggle('active');
             });
-            
-            // Проверка состояния подключения из Telegram.WebApp.CloudStorage
-            // По умолчанию accordion открыт (если бот не подключен)
+
             instructionContent.classList.add('active');
-            
-            // Валидация поля токена и активация кнопки
+
             botTokenInput.addEventListener('input', function() {
                 const tokenValue = botTokenInput.value.trim();
-                // Минимальная валидация: токен должен быть не пустым
                 if (tokenValue.length > 0) {
                     connectButton.disabled = false;
                 } else {
                     connectButton.disabled = true;
                 }
             });
-            
-            // Обработка подключения
+
             connectButton.addEventListener('click', async function() {
                 const tokenValue = botTokenInput.value.trim();
-                
-                if (!tokenValue) {
-                    return;
-                }
-                
-                // Обновление статуса: загрузка
+                if (!tokenValue) { return; }
                 connectionStatus.textContent = 'Подключаю...';
                 connectionStatus.className = 'status-message loading';
                 connectButton.disabled = true;
-                
                 try {
-                    // Имитация API вызова (здесь будет реальный вызов к backend)
-                    // Backend должен вызвать getMe() для проверки токена
                     await new Promise(resolve => setTimeout(resolve, 1500));
-                    
-                    // Имитация успешного подключения
                     connectionStatus.textContent = 'Успешно подключено!';
                     connectionStatus.className = 'status-message success';
-                    
-                    // Сворачиваем инструкцию после успешного подключения
                     instructionContent.classList.remove('active');
-                    
-                    // Сохранение состояния в CloudStorage
-                    // if (window.Telegram && window.Telegram.WebApp) {
-                    //     Telegram.WebApp.CloudStorage.setItem('botConnected', 'true');
-                    // }
-                    
                 } catch (error) {
-                    // Обработка ошибки
                     connectionStatus.textContent = 'Ошибка подключения. Проверьте токен.';
                     connectionStatus.className = 'status-message error';
                     connectButton.disabled = false;
