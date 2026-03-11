@@ -3,24 +3,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI FIT CENTER — Экран 2 (Подключение агента)</title>
+    <title>AI FIT CENTER — Подключение агента</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <!-- Block: App Container -->
     <div class="app">
-                <!-- Block: Screen2 - Подключение агента -->
         <div class="screen2">
             <h1>Подключение агента</h1>
 
-            <!-- Блок: Инструкция (сворачиваемый accordion) -->
-            <div class="instruction-accordion">
-                <button class="accordion-header" id="instructionToggle">
+            <!-- Статус агента (верхняя карточка-строка) -->
+            <div class="card card--status">
+                <div class="card__row">
+                    <span class="card__label">Статус агента</span>
+                    <span class="card__value card__value--error" id="agentStatus">Не подключен</span>
+                </div>
+            </div>
+
+            <!-- Карточка 1: Как получить токен (Аккордеон) -->
+            <div class="card accordion">
+                <button class="accordion__header" id="toggleInstruction">
                     Как получить токен?
+                    <span class="accordion__icon">▼</span>
                 </button>
-                <div class="accordion-content" id="instructionContent">
-                    <ol>
+                <div class="accordion__content" id="contentInstruction">
+                    <ol class="instruction-list">
                         <li>Откройте @BotFather в Telegram</li>
                         <li>Отправьте команду /mybots</li>
                         <li>Выберите вашего бота</li>
@@ -30,31 +37,25 @@
                 </div>
             </div>
 
-            <!-- Блок: Поле токена -->
-            <div class="token-input-section">
-                <label for="botToken">Введите токен бота</label>
-                <input
-                    type="text"
-                    id="botToken"
-                    class="token-input"
-                    placeholder="Пример: 123456789:AAAbbbCCC..."
-                />
-                <button
-                    id="connectButton"
-                    class="connect-button"
-                    disabled
-                >
-                    Подключить
+            <!-- Карточка 2: Введите токен (Аккордеон) -->
+            <div class="card accordion">
+                <button class="accordion__header" id="toggleConnect">
+                    Введите токен
+                    <span class="accordion__icon">▼</span>
                 </button>
+                <div class="accordion__content active" id="contentConnect">
+                    <div class="form-group">
+                        <label class="form-label" for="botToken">API Token вашего бота</label>
+                        <input type="text" id="botToken" class="form-input" placeholder="123456789:AAAbbbCCC..." />
+                    </div>
+                    <button class="save-button" id="connectButton" disabled>Подключить</button>
+                    <p id="connectionMessage" class="status-msg"></p>
+                </div>
             </div>
 
-            <!-- Блок: Статус -->
-            <div class="status-section">
-                <p id="connectionStatus" class="status-message">Не подключено</p>
-            </div>
         </div>
 
-        <!-- Block: Screen Navigation -->
+        <!-- Навигация -->
         <div class="screen-nav">
             <a href="screen-1.html" class="screen-nav__button">Профиль</a>
             <a href="screen-2.html" class="screen-nav__button screen-nav__button--active">Агент</a>
@@ -64,66 +65,91 @@
     </div>
 
     <style>
-        .screen2 { padding: 20px; max-width: 600px; margin: 0 auto; }
-        .instruction-accordion { margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
-        .accordion-header { width: 100%; padding: 15px; background: #4A90E2; color: white; border: none; text-align: left; font-size: 16px; font-weight: bold; cursor: pointer; }
-        .accordion-header:hover { background: #357ABD; }
-        .accordion-content { padding: 15px; background: #f9f9f9; display: none; }
-        .accordion-content.active { display: block; }
-        .accordion-content ol { margin: 10px 0; padding-left: 20px; }
-        .accordion-content li { margin: 8px 0; }
-        .token-input-section { margin-bottom: 20px; }
-        .token-input-section label { display: block; margin-bottom: 8px; font-weight: bold; }
-        .token-input { width: 100%; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; margin-bottom: 10px; }
-        .connect-button { padding: 12px 24px; background: #4CAF50; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
-        .connect-button:disabled { background: #ccc; cursor: not-allowed; }
-        .connect-button:not(:disabled):hover { background: #45a049; }
-        .status-section { padding: 15px; border-radius: 4px; background: #f0f0f0; }
-        .status-message { margin: 0; font-weight: bold; }
-        .status-message.loading { color: #FFA500; }
-        .status-message.success { color: #4CAF50; }
-        .status-message.error { color: #f44336; }
+        .screen2 { padding: 16px; }
+        .screen2 h1 { font-size: 22px; font-weight: 700; color: #0b3c78; margin-bottom: 16px; padding-left: 4px; }
+
+        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 16px; overflow: hidden; }
+        
+        /* Row Style for Status */
+        .card__row { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; }
+        .card__label { font-size: 14px; color: #555; }
+        .card__value { font-size: 14px; font-weight: 600; }
+        .card__value--success { color: #4CAF50; }
+        .card__value--error { color: #f44336; }
+
+        /* Accordion */
+        .accordion__header { 
+            width: 100%; padding: 14px 16px; background: #4A90E2; color: #ffffff; border: none; 
+            text-align: left; font-size: 15px; font-weight: 600; cursor: pointer; 
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .accordion__icon { transition: transform 0.3s ease; font-size: 10px; }
+        .accordion__content { display: none; padding: 16px; }
+        .accordion__content.active { display: block; }
+        .accordion__header.open .accordion__icon { transform: rotate(180deg); }
+
+        .instruction-list { padding-left: 20px; font-size: 14px; color: #444; line-height: 1.6; }
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 13px; color: #333; margin-bottom: 8px; font-weight: 500; }
+        .form-input { width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; background: #fafafa; }
+        
+        .save-button { width: 100%; padding: 12px; background: #4A90E2; color: #ffffff; font-size: 15px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+        .save-button:hover:not(:disabled) { background: #357ABD; }
+        .save-button:disabled { background: #ccc; cursor: not-allowed; }
+
+        .status-msg { margin-top: 12px; font-size: 13px; text-align: center; font-weight: 500; }
+        .status-msg.success { color: #4CAF50; }
+        .status-msg.error { color: #f44336; }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const instructionToggle = document.getElementById('instructionToggle');
-            const instructionContent = document.getElementById('instructionContent');
-            const botTokenInput = document.getElementById('botToken');
-            const connectButton = document.getElementById('connectButton');
-            const connectionStatus = document.getElementById('connectionStatus');
+            const tg = window.Telegram.WebApp;
+            tg.ready();
 
-            instructionToggle.addEventListener('click', function() {
-                instructionContent.classList.toggle('active');
+            // Accordion Logic
+            function initAccordion(headerId, contentId) {
+                const header = document.getElementById(headerId);
+                const content = document.getElementById(contentId);
+                header.addEventListener('click', () => {
+                    const isOpen = content.classList.toggle('active');
+                    header.classList.toggle('open', isOpen);
+                });
+            }
+            initAccordion('toggleInstruction', 'contentInstruction');
+            initAccordion('toggleConnect', 'contentConnect');
+
+            // Token / Connection Logic
+            const tokenInput = document.getElementById('botToken');
+            const connectBtn = document.getElementById('connectButton');
+            const statusLabel = document.getElementById('agentStatus');
+            const msgEl = document.getElementById('connectionMessage');
+
+            // Load saved state
+            const isConnected = localStorage.getItem('agentConnected') === 'true';
+            if (isConnected) {
+                statusLabel.textContent = 'Подключен';
+                statusLabel.className = 'card__value card__value--success';
+            }
+
+            tokenInput.addEventListener('input', () => {
+                connectBtn.disabled = tokenInput.value.trim().length < 10;
             });
 
-            instructionContent.classList.add('active');
+            connectBtn.addEventListener('click', async () => {
+                msgEl.textContent = 'Проверка токена...';
+                msgEl.className = 'status-msg';
+                connectBtn.disabled = true;
 
-            botTokenInput.addEventListener('input', function() {
-                const tokenValue = botTokenInput.value.trim();
-                if (tokenValue.length > 0) {
-                    connectButton.disabled = false;
-                } else {
-                    connectButton.disabled = true;
-                }
-            });
-
-            connectButton.addEventListener('click', async function() {
-                const tokenValue = botTokenInput.value.trim();
-                if (!tokenValue) { return; }
-                connectionStatus.textContent = 'Подключаю...';
-                connectionStatus.className = 'status-message loading';
-                connectButton.disabled = true;
-                try {
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                    connectionStatus.textContent = 'Успешно подключено!';
-                    connectionStatus.className = 'status-message success';
-                    instructionContent.classList.remove('active');
-                } catch (error) {
-                    connectionStatus.textContent = 'Ошибка подключения. Проверьте токен.';
-                    connectionStatus.className = 'status-message error';
-                    connectButton.disabled = false;
-                }
+                // Имитация API запроса
+                setTimeout(() => {
+                    localStorage.setItem('agentConnected', 'true');
+                    statusLabel.textContent = 'Подключен';
+                    statusLabel.className = 'card__value card__value--success';
+                    msgEl.textContent = 'Агент успешно подключен!';
+                    msgEl.className = 'status-msg success';
+                    tg.HapticFeedback.notificationOccurred('success');
+                }, 1500);
             });
         });
     </script>
