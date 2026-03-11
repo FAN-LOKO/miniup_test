@@ -12,57 +12,55 @@
         <div class="screen3">
             <h1>Ваши ссылки</h1>
 
-            <!-- Карточка 1: Партнёрские ссылки -->
-            <div class="card card--white-bg">
-                <div class="card__header">Партнерские ссылки</div>
-                <div class="card__body">
+            <!-- Карточка 1: Партнёрские ссылки (Аккордеон) -->
+            <div class="card accordion">
+                <button class="accordion__header" id="togglePartner">
+                    Партнерские ссылки
+                    <span class="accordion__icon">▼</span>
+                </button>
+                <div class="accordion__content active" id="contentPartner">
                     <p class="card__subtitle">Введите ваши реферальные ссылки в компании PM International</p>
-                    
                     <div class="form-group">
                         <label class="form-label">Ваша партнерская ссылка вида - https://www.pmebusiness.com/registrationv2?TP=ХХХХХХХХ</label>
                         <input type="url" id="partnerLink" class="form-input" placeholder="https://www.pmebusiness.com/..." />
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Ваша клиентская ссылка вида - https://www.fitline.com/?sponsor=ХХХХХХХХ</label>
                         <input type="url" id="clientLink" class="form-input" placeholder="https://www.fitline.com/..." />
                     </div>
-
                     <button class="save-button" id="savePartnerLinks">Сохранить</button>
                 </div>
             </div>
 
-            <!-- Карточка 2: Ссылки на соцсети -->
-            <div class="card card--white-bg">
-                <div class="card__header">Ссылки на соцсети</div>
-                <div class="card__body">
+            <!-- Карточка 2: Ссылки на соцсети (Аккордеон) -->
+            <div class="card accordion">
+                <button class="accordion__header" id="toggleSocial">
+                    Ссылки на соцсети
+                    <span class="accordion__icon">▼</span>
+                </button>
+                <div class="accordion__content" id="contentSocial">
                     <p class="card__subtitle">Введите ссылки на ваши соцсети и мессенджеры если хотите, чтобы агент предлагал вашим партнерам на них подписаться. Все поля опциональные и обязательное заполнения не требуется.</p>
                     
                     <div class="form-group">
                         <label class="form-label">Telegram</label>
                         <input type="url" id="socialTg" class="form-input" placeholder="https://t.me/your_account" />
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">WhatsApp</label>
                         <input type="url" id="socialWa" class="form-input" placeholder="https://wa.me/7900..." />
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Instagram</label>
                         <input type="url" id="socialInst" class="form-input" placeholder="https://instagram.com/..." />
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">Vkontakte</label>
                         <input type="url" id="socialVk" class="form-input" placeholder="https://vk.com/..." />
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">YouTube</label>
                         <input type="url" id="socialYt" class="form-input" placeholder="https://youtube.com/..." />
                     </div>
-
                     <div class="form-group">
                         <label class="form-label">TikTok</label>
                         <input type="url" id="socialTt" class="form-input" placeholder="https://tiktok.com/..." />
@@ -74,7 +72,7 @@
 
         </div>
 
-        <!-- Навигация (нижняя) -->
+        <!-- Навигация -->
         <div class="screen-nav">
             <a href="screen-1.html" class="screen-nav__button">Профиль</a>
             <a href="screen-2.html" class="screen-nav__button">Агент</a>
@@ -87,22 +85,35 @@
         .screen3 { padding: 16px; padding-bottom: 80px; }
         .screen3 h1 { font-size: 22px; font-weight: 700; color: #0b3c78; margin-bottom: 16px; padding-left: 4px; }
 
-        /* Карточка */
-        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px; overflow: hidden; }
-        .card__header { background: #4A90E2; color: #ffffff; font-size: 15px; font-weight: 600; padding: 12px 16px; }
-        .card__body { padding: 16px; }
+        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 16px; overflow: hidden; }
+        
+        /* Accordion Styles */
+        .accordion__header { 
+            width: 100%; 
+            padding: 14px 16px; 
+            background: #4A90E2; 
+            color: #ffffff; 
+            border: none; 
+            text-align: left; 
+            font-size: 15px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .accordion__icon { transition: transform 0.3s ease; font-size: 10px; }
+        .accordion__content { display: none; padding: 16px; }
+        .accordion__content.active { display: block; }
+        .accordion__header.open .accordion__icon { transform: rotate(180deg); }
+
         .card__subtitle { font-size: 12px; color: #666; margin-bottom: 18px; line-height: 1.4; }
-
-        /* Форма */
         .form-group { margin-bottom: 18px; }
-        .form-label { display: block; font-size: 13px; color: #333; margin-bottom: 8px; font-weight: 500; line-height: 1.3; }
-        .form-input { width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; background: #fafafa; transition: all 0.2s ease; }
-        .form-input:focus { border-color: #4A90E2; background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1); }
-
-        /* Кнопка сохранить */
+        .form-label { display: block; font-size: 13px; color: #333; margin-bottom: 8px; font-weight: 500; }
+        .form-input { width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; background: #fafafa; }
+        
         .save-button { width: 100%; padding: 12px; background: #4A90E2; color: #ffffff; font-size: 15px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
         .save-button:hover { background: #357ABD; }
-        .save-button:active { transform: scale(0.98); }
     </style>
 
     <script>
@@ -110,26 +121,31 @@
             const tg = window.Telegram.WebApp;
             tg.ready();
 
+            // Accordion Logic
+            function initAccordion(headerId, contentId) {
+                const header = document.getElementById(headerId);
+                const content = document.getElementById(contentId);
+                header.addEventListener('click', () => {
+                    const isOpen = content.classList.toggle('active');
+                    header.classList.toggle('open', isOpen);
+                });
+            }
+            initAccordion('togglePartner', 'contentPartner');
+            initAccordion('toggleSocial', 'contentSocial');
+
+            // Form Logic
             const fieldIds = ['partnerLink', 'clientLink', 'socialTg', 'socialWa', 'socialInst', 'socialVk', 'socialYt', 'socialTt'];
             const fields = {};
-            fieldIds.forEach(id => fields[id] = document.getElementById(id));
-
-            // Загрузка сохранённых значений из localStorage
             fieldIds.forEach(id => {
+                fields[id] = document.getElementById(id);
                 const val = localStorage.getItem(id);
                 if (val) fields[id].value = val;
             });
 
             function saveSet(ids) {
-                ids.forEach(id => {
-                    localStorage.setItem(id, fields[id].value.trim());
-                });
+                ids.forEach(id => localStorage.setItem(id, fields[id].value.trim()));
                 tg.HapticFeedback.notificationOccurred('success');
-                tg.showPopup({
-                    title: 'Успех',
-                    message: 'Ссылки сохранены!',
-                    buttons: [{type: 'ok'}]
-                });
+                tg.showPopup({ title: 'Успех', message: 'Ссылки сохранены!', buttons: [{type: 'ok'}] });
             }
 
             document.getElementById('savePartnerLinks').addEventListener('click', () => saveSet(['partnerLink', 'clientLink']));
