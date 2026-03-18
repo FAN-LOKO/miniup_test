@@ -471,3 +471,127 @@ body {
 .accordion__content {
     background: #ffffff;
 }
+
+/* =============================
+   PAGE-SPECIFIC STYLES
+   (pages/home.html, pages/modules.html, pages/partner.html,
+    pages/payment.html, pages/settings.html)
+============================= */
+
+/* COMMON: All pages wrapper */
+.page {
+    padding: 16px;
+}
+
+/* =============================
+   HOME PAGE (pages/home.html)
+============================= */
+
+/* Profile card - user info block */
+.profile-card {
+    background: #1605fa;
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Avatar icon */
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+/* User info container */
+.profile-info {
+    flex: 1;
+}
+
+/* User name */
+.profile-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+/* User status */
+.profile-status {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* Module card wrapper */
+.module-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Module header */
+.module-header {
+    background: #1605fa;
+    color: white;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Module header left part */
+.module-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Module icon */
+.module-icon {
+    font-size: 20px;
+}
+
+/* Module name */
+.module-name {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Module body content */
+.module-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Open module button */
+.btn-open {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: #03d342;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.btn-open:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+}
