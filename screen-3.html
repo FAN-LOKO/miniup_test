@@ -9,31 +9,29 @@
 </head>
 <body>
     <div class="app">
-        <div class="screen3">
-            <h1>Ваши ссылки</h1>
+        <div class="screen-content">
+            <!-- Block: ScreenTitle -->
+            <h1 id="screenTitle">Ваши ссылки</h1>
 
-            <!-- Карточка 1: Партнёрские ссылки (Аккордеон) -->
-                        <!-- Block: PartnerLinksCard -->
+            <!-- Block: PartnerLinksCard -->
             <div class="card">
-                <h3 class="card__title">Партнёрские ссылки</h3>
-                <p class="card__subtitle">Введите ваши реферальные ссылки в компании PM International</p>
+                <h3 class="card_title">Партнёрские ссылки</h3>
+                <p class="card_subtitle">Введите ваши реферальные ссылки в компании PM International</p>
                 <div class="form-group">
-                    <label class="form-label">Ваша партнерская ссылка вида - https://www.pmebusiness.com/registrationv2?TP=ХХХХХХХХ</label>
+                    <label class="form-label">Ваша партнерская ссылка вида – https://www.pmebusiness.com/registrationv2?TP=ХХХХХХХХ</label>
                     <input type="url" id="partnerLink" class="form-input" placeholder="https://www.pmebusiness.com/..." />
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Ваша клиентская ссылка вида - https://www.fitline.com/?sponsor=ХХХХХХХХ</label>
+                    <label class="form-label">Ваша клиентская ссылка вида – https://www.fitline.com/?sponsor=ХХХХХХХХ</label>
                     <input type="url" id="clientLink" class="form-input" placeholder="https://www.fitline.com/..." />
                 </div>
                 <button class="save-button" id="savePartnerLinks">Сохранить</button>
-            </div>    </div>
             </div>
 
-            <!-- Карточка 2: Ссылки на соцсети (Аккордеон) -->
-                        <!-- Block: SocialLinksCard -->
+            <!-- Block: SocialLinksCard -->
             <div class="card">
-                <h3 class="card__title">Ссылки на соцсети</h3>
-                <p class="card__subtitle">Введите ссылки на ваши соцсети и мессенджеры если хотите, чтобы агент предлагал вашим партнерам на них подписаться. Все поля опциональные и обязательное заполнение не требуется.</p>
+                <h3 class="card_title">Ссылки на соцсети</h3>
+                <p class="card_subtitle">Введите ссылки на ваши соцсети и мессенджеры если хотите, чтобы агент предлагал вашим партнерам на них подписаться. Все поля опциональные.</p>
                 <div class="form-group">
                     <label class="form-label">Telegram</label>
                     <input type="url" id="socialTg" class="form-input" placeholder="https://t.me/your_account" />
@@ -59,70 +57,23 @@
                     <input type="url" id="socialTt" class="form-input" placeholder="https://tiktok.com/..." />
                 </div>
                 <button class="save-button" id="saveSocialLinks">Сохранить</button>
-            </div>        <div class="form-group">
-                        <label class="form-label">TikTok</label>
-                        <input type="url" id="socialTt" class="form-input" placeholder="https://tiktok.com/..." />
-                    </div>
-
-                    <button class="save-button" id="saveSocialLinks">Сохранить</button>
-                </div>
             </div>
-
         </div>
 
-        <!-- Навигация -->
-        <div class="screen-nav">
-            <a href="screen-1.html" class="screen-nav__button">Главная</a>            <a href="screen-2.html" class="screen-nav__button">Агент</a>
-                        <a href="screen-2.html" class="screen-nav__button">Бот</a>
+        <!-- Block: ScreenNavigation -->
+        <nav class="screen-nav">
+            <a href="screen-1.html" class="screen-nav__button">Главная</a>
+            <a href="screen-2.html" class="screen-nav__button">Бот</a>
             <a href="screen-3.html" class="screen-nav__button screen-nav__button--active">Ссылки</a>
-            <a href="screen-4.html" class="screen-nav__button">Агент</a>            <a href="screen-5.html" class="screen-nav__button">Статистика</a>
-        
+            <a href="screen-4.html" class="screen-nav__button">Профиль</a>
+            <a href="screen-5.html" class="screen-nav__button">Статистика</a>
+        </nav>
     </div>
-
-    <styl.accordion__header { 
-            width: 100%; 
-            padding: 14px 16px; 
-            background: #4A90E2; 
-            color: #ffffff; 
-            border: none; 
-            text-align: left; 
-            font-size: 15px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-        }
-        .accordion__icon { transition: transform 0.3s ease; font-size: 10px; }
-        .accordion__content { display: none; padding: 16px; }
-        .accordion__content.active { display: block; }
-        .accordion__header.open .accordion__icon { transform: rotate(180deg); }
-
-        .card__subtitle { font-size: 12px; color: #666; margin-bottom: 18px; line-height: 1.4; }
-        .form-group { margin-bottom: 18px; }
-        .form-label { display: block; font-size: 13px; color: #333; margin-bottom: 8px; font-weight: 500; }
-        .form-input { width: 100%; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; background: #fafafa; }
-        
-        .save-button { width: 100%; padding: 12px; background: #4A90E2; color: #ffffff; font-size: 15px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
-        .save-button:hover { background: #357ABD; }
-    </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tg = window.Telegram.WebApp;
             tg.ready();
-
-            // Accordion Logic
-            function initAccordion(headerId, contentId) {
-                const header = document.getElementById(headerId);
-                const content = document.getElementById(contentId);
-                header.addEventListener('click', () => {
-                    const isOpen = content.classList.toggle('active');
-                    header.classList.toggle('open', isOpen);
-                });
-            }
-            initAccordion('togglePartner', 'contentPartner');
-            initAccordion('toggleSocial', 'contentSocial');
 
             // Form Logic
             const fieldIds = ['partnerLink', 'clientLink', 'socialTg', 'socialWa', 'socialInst', 'socialVk', 'socialYt', 'socialTt'];
@@ -139,8 +90,12 @@
                 tg.showPopup({ title: 'Успех', message: 'Ссылки сохранены!', buttons: [{type: 'ok'}] });
             }
 
-            document.getElementById('savePartnerLinks').addEventListener('click', () => saveSet(['partnerLink', 'clientLink']));
-            document.getElementById('saveSocialLinks').addEventListener('click', () => saveSet(['socialTg', 'socialWa', 'socialInst', 'socialVk', 'socialYt', 'socialTt']));
+            document.getElementById('savePartnerLinks').addEventListener('click', () =>
+                saveSet(['partnerLink', 'clientLink'])
+            );
+            document.getElementById('saveSocialLinks').addEventListener('click', () =>
+                saveSet(['socialTg', 'socialWa', 'socialInst', 'socialVk', 'socialYt', 'socialTt'])
+            );
         });
     </script>
 </body>
