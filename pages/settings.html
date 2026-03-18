@@ -11,36 +11,38 @@
 
   <h1 class="page-title">Настройки</h1>
 
-  <!-- Profile -->
-  <div class="settings-section">
-    <div class="settings-header">👤 Профиль</div>
-    <div class="settings-item">
-      <span class="settings-label">Имя</span>
-      <span class="settings-value" id="sName">-</span>
+    <!-- Profile -->
+    <div class="module-card">
+        <div class="module-header">👤 Профиль</div>
+        <div class="module-body">
+            <div class="settings-item">
+                <span class="settings-label">Имя</span>
+                <span class="settings-value" id="sName">-</span>
+            </div>
+            <div class="settings-item">
+                <span class="settings-label">Username</span>
+                <span class="settings-value" id="sUser">-</span>
+            </div>
+            <div class="settings-item">
+                <span class="settings-label">ID</span>
+                <span class="settings-value" id="sId">-</span>
+            </div>
+        </div>
     </div>
-    <div class="settings-item">
-      <span class="settings-label">Username</span>
-      <span class="settings-value" id="sUser">-</span>
+    <!-- App -->
+    <div class="module-card">
+        <div class="module-header">📱 О приложении</div>
+        <div class="module-body">
+            <div class="settings-item">
+                <span class="settings-label">Версия</span>
+                <span class="settings-value">1.0.0</span>
+            </div>
+            <div class="settings-item">
+                <span class="settings-label">Разработчик</span>
+                <span class="settings-value">KadtsinDigital</span>
+            </div>
+        </div>
     </div>
-    <div class="settings-item">
-      <span class="settings-label">ID</span>
-      <span class="settings-value" id="sId">-</span>
-    </div>
-  </div>
-
-  <!-- App -->
-  <div class="settings-section">
-    <div class="settings-header">ℹ️ О приложении</div>
-    <div class="settings-item">
-      <span class="settings-label">Версия</span>
-      <span class="settings-value">1.0.0</span>
-    </div>
-    <div class="settings-item">
-      <span class="settings-label">Разработчик</span>
-      <span class="settings-value">KadtsinDigital</span>
-    </div>
-  </div>
-
   <button class="btn-logout"
     onclick="tg.close()">
     Закрыть приложение
