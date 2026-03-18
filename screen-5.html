@@ -28,7 +28,7 @@
 
             <!-- Block: DetailedStats (Accordion) -->
             <div class="section-title">Детализация</div>
-            
+
             <!-- Item: Dialogs -->
             <div class="card accordion">
                 <button class="accordion__header" id="toggleDialogs">
@@ -74,39 +74,6 @@
             <a href="screen-5.html" class="screen-nav__button screen-nav__button--active">Статистика</a>
         </nav>
     </div>
-
-    <style>
-        /* Styles: ScreenLayout */
-        .screen-content { padding: 16px; padding-bottom: 100px; }
-        #screenTitle { font-size: 22px; font-weight: 700; color: #0b3c78; margin-bottom: 20px; }
-
-        /* Styles: StatsGrid */
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
-        .stats-card { background: #ffffff; border-radius: 12px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        .stats-label { display: block; font-size: 12px; color: #6b7280; margin-bottom: 4px; font-weight: 500; }
-        .stats-value { font-size: 24px; font-weight: 700; color: #3b82f6; }
-
-        /* Styles: Accordion */
-        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 12px; overflow: hidden; }
-        .accordion__header { 
-            width: 100%; padding: 14px 16px; background: #ffffff; color: #1a1a1a; border: none; 
-            text-align: left; font-size: 15px; font-weight: 600; cursor: pointer; 
-            display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f3f4f6;
-        }
-        .accordion__icon { transition: transform 0.3s ease; font-size: 10px; color: #9ca3af; }
-        .accordion__content { display: none; padding: 12px; background: #fafafa; }
-        .accordion__content.active { display: block; }
-        .open .accordion__icon { transform: rotate(180deg); }
-
-        /* Styles: Lists */
-        .section-title { font-size: 14px; font-weight: 600; color: #6b7280; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .dialog-item { padding: 10px; border-bottom: 1px solid #eee; }
-        .dialog-info { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-        .dialog-date { color: #9ca3af; font-size: 11px; }
-        .dialog-last-msg { font-size: 12px; color: #6b7280; margin: 0; }
-        .ref-item { display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px; border-bottom: 1px solid #eee; }
-        .ref-date { color: #9ca3af; }
-    </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
