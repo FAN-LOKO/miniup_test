@@ -910,3 +910,80 @@ body {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     }
 }
+
+/* ===============================
+   PARTNER PAGE STATS
+=============================== */
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.stat-item:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+}
+
+.stat-value {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* ===============================
+   ACCORDION STYLES
+=============================== */
+.accordion-toggle {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.toggle-icon {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.accordion-body {
+    padding-top: 12px;
+    color: #fff !important;
+}
+
+.accordion-body * {
+    color: #fff !important;
+}
+
+.line-label {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.conditions-text {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.conditions-text li {
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    color: #fff !important;
+}
+
+.conditions-text li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color, #00d9ff);
+}
