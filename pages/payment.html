@@ -11,40 +11,45 @@
 
   <h1 class="page-title">Оплата</h1>
 
-  <!-- Balance -->
-  <div class="balance-card">
-    <div class="balance-label">Баланс</div>
-    <div>
-      <span class="balance-amount" id="balance">0</span>
-      <span class="balance-currency"> руб.</span>
+    <!-- Balance -->
+    <div class="module-card">
+        <div class="module-header">💰 Баланс</div>
+        <div class="module-body">
+            <div class="balance-display">
+                <span class="balance-amount" id="balance">0</span>
+                <span class="balance-currency"> руб.</span>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Plan 1 month -->
-  <div class="plan-card">
-    <div class="plan-header">📅 Модуль Агент</div>
-    <div class="plan-body">
-      <div class="plan-price">990 руб.</div>
-      <div class="plan-days">30 дней</div>
-      <button class="btn-pay"
-        onclick="pay(990, 30)">
-        Оплатить
-      </button>
+    <!-- Plan 1 month -->
+    <div class="module-card">
+        <div class="module-header">📋 Модуль Агент</div>
+        <div class="module-body">
+            <div class="plan-info">
+                <div class="plan-price">990 руб.</div>
+                <div class="plan-duration">30 дней</div>
+            </div>
+            <button class="btn-pay"
+                onclick="pay(990, 30)">
+                Оплатить
+            </button>
+        </div>
     </div>
-  </div>
-
-  <!-- Plan 3 months -->
-  <div class="plan-card">
-    <div class="plan-header">📅 Модуль Агент — 3 мес.</div>
-    <div class="plan-body">
-      <div class="plan-price">2490 руб.</div>
-      <div class="plan-days">90 дней (скидка 16%)</div>
-      <button class="btn-pay"
-        onclick="pay(2490, 90)">
-        Оплатить
-      </button>
+    <!-- Plan 3 months -->
+    <div class="module-card">
+        <div class="module-header">📋 Модуль Агент — 3 мес.</div>
+        <div class="module-body">
+            <div class="plan-info">
+                <div class="plan-price">2490 руб.</div>
+                <div class="plan-duration">90 дней (скидка 16%)</div>
+            </div>
+            <button class="btn-pay"
+                onclick="pay(2490, 90)">
+                Оплатить
+            </button>
+        </div>
     </div>
-  </div>
 
 </div><!-- .page -->
 
