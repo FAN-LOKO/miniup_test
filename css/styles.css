@@ -197,6 +197,7 @@ body {
     cursor: pointer;
     transition: 0.2s;
     font-family: inherit;
+        box-shadow: 0 4px 8px rgba(3, 210, 66, 0.3);
 }
 
 .action-button:active {
