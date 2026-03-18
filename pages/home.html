@@ -1,163 +1,63 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-  <title>Главная</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: -apple-system, sans-serif;
-      background: #f5f5f5;
-    }
-    .page { padding: 16px; }
-    .profile-card {
-      background: #1a3a5c;
-      color: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: #2a5a8c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      flex-shrink: 0;
-    }
-    .profile-info { flex: 1; }
-    .profile-name {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .profile-status {
-      font-size: 13px;
-      opacity: 0.8;
-    }
-    .section-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1a3a5c;
-      margin-bottom: 12px;
-    }
-    .module-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .module-header {
-      background: #1a3a5c;
-      color: white;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .module-header-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .module-icon { font-size: 20px; }
-    .module-name { font-size: 15px; font-weight: 600; }
-    .badge {
-      background: #f0a500;
-      color: white;
-      border-radius: 12px;
-      padding: 3px 10px;
-      font-size: 12px;
-      font-weight: 600;
-    }
-    .badge.inactive {
-      background: #aaa;
-    }
-    .module-body {
-      padding: 14px 16px;
-      font-size: 14px;
-      color: #555;
-    }
-    .btn-open {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      background: #1a3a5c;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      text-align: center;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 <div class="page">
-
-  <!-- Profile Block -->
-  <div class="profile-card">
-    <div class="avatar">👤</div>
-    <div class="profile-info">
-      <div class="profile-name" id="userName">Имя пользователя</div>
-      <div class="profile-status" id="userStatus">Не авторизован</div>
+    <!-- Profile Block -->
+    <div class="profile-card">
+        <div class="avatar">👤</div>
+        <div class="profile-info">
+            <div class="profile-name" id="userName">Имя пользователя</div>
+            <div class="profile-status" id="userStatus">Не авторизован</div>
+        </div>
     </div>
-  </div>
 
-  <!-- Modules Section -->
-  <p class="section-title">Мои модули</p>
+    <!-- Modules Section -->
+    <p class="section-title">Мои модули</p>
 
-  <!-- Agent Module Card -->
-  <div class="module-card">
-    <div class="module-header">
-      <div class="module-header-left">
-        <span class="module-icon">🤖</span>
-        <span class="module-name">Агент</span>
-      </div>
-      <span class="badge" id="agentBadge">30 дней</span>
+    <!-- Agent Module Card -->
+    <div class="module-card">
+        <div class="module-header">
+            <div class="module-header-left">
+                <span class="module-icon">🤖</span>
+                <span class="module-name">Агент</span>
+            </div>
+            <span class="badge" id="agentBadge">30 дней</span>
+        </div>
+        <div class="module-body">
+            <p>Искусственный агент для вашего бизнеса</p>
+            <button class="btn-open" onclick="openModule('agent')">
+                Открыть модуль
+            </button>
+        </div>
     </div>
-    <div class="module-body">
-      <p>Искусственный агент для вашего бизнеса</p>
-      <button class="btn-open"
-        onclick="openModule('agent')">
-        Открыть модуль
-      </button>
-    </div>
-  </div>
-
 </div><!-- .page -->
 
 <script>
-  const tg = window.Telegram.WebApp;
-  tg.ready();
+    const tg = window.Telegram.WebApp;
+    tg.ready();
 
-  // Show user info
-  const user = tg.initDataUnsafe.user;
-  if (user) {
-    document.getElementById('userName').textContent =
-      user.first_name + ' ' + (user.last_name || '');
-    document.getElementById('userStatus').textContent =
-      '@' + (user.username || 'Авторизован');
-  }
+    // Show user info
+    const user = tg.initDataUnsafe.user;
+    if (user) {
+        document.getElementById('userName').textContent =
+            user.first_name + ' ' + (user.last_name || '');
+        document.getElementById('userStatus').textContent =
+            '@' + (user.username || 'Авторизован');
+    }
 
-  // Open module - send message to parent (app.html)
-  function openModule(module) {
-    window.parent.postMessage(
-      { type: 'navigate', page: module + '/index.html', tab: 'home' },
-      '*'
-    );
-  }
+    // Open module - send message to parent (app.html)
+    function openModule(module) {
+        window.parent.postMessage(
+            { type: 'navigate', page: module + '/index.html', tab: 'home' },
+            '*'
+        );
+    }
 </script>
 </body>
 </html>
