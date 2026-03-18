@@ -1,236 +1,132 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-  <title>Партнерка</title>
-  <link rel="stylesheet" href="../css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Партнерка</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 <div class="page">
 
-  <h1 class="page-title">🤝 Партнерка</h1>
+    <h1 class="page-title">🤝 Партнерка</h1>
 
-  <!-- Реферальная ссылка -->
-      <div class="module-card">
+    <!-- Реферальная ссылка -->
+    <div class="module-card">
         <div class="module-header">🤝 Партнерка</div>
         <div class="module-body">
             <p><strong>Ваша реферальная ссылка:</strong></p>
             <div class="ref-link" id="refLink">
                 https://t.me/your_bot?start=...
             </div>
-            <button class="btn-copy"
+            <button class="btn-copy btn-primary"
                 onclick="copyRef()">
                 Копировать
             </button>
         </div>
     </div>
 
-  <!-- Статистика по линиям -->
-          <!-- Статистика по линиям -->
-        <div class="module-card">
-            <div class="module-header">📊 Статистика</div>
-            <div class="module-body">
-                <div class="stat-item">
-                    <div class="stat-label">1 линия:</div>
-                    <div class="stat-value">0</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">партнёров</div>
-                    <div class="stat-value"></div>
-                </div>
+    <!-- Статистика -->
+    <div class="module-card">
+        <div class="module-header">📊 Статистика</div>
+        <div class="module-body">
+            <div class="stat-item">
+                <div class="stat-label">Всего человек:</div>
+                <div class="stat-value">0</div>
             </div>
-        </div>
-
-        <div class="module-card">
-            <div class="module-header">📊 2 линия</div>
-            <div class="module-body">
-                <div class="stat-item">
-                    <div class="stat-label">партнёров</div>
-                    <div class="stat-value">0</div>
-                </div>
+            <div class="stat-item">
+                <div class="stat-label">1 линия:</div>
+                <div class="stat-value">0</div>
             </div>
-        </div>
-
-        <div class="module-card">
-            <div class="module-header">📊 3 линия</div>
-            <div class="module-body">
-                <div class="stat-item">
-                    <div class="stat-label">партнёров</div>
-                    <div class="stat-value">0</div>
-                </div>
+            <div class="stat-item">
+                <div class="stat-label">2 линия:</div>
+                <div class="stat-value">0</div>
             </div>
-        </div>
-
-        <div class="module-card">
-            <div class="module-header">📊 Всего</div>
-            <div class="module-body">
-                <div class="stat-item">
-                    <div class="stat-label">человек</div>
-                    <div class="stat-value">0</div>
-                </div>
+            <div class="stat-item">
+                <div class="stat-label">3 линия:</div>
+                <div class="stat-value">0</div>
             </div>
         </div>
     </div>
-  </div>
 
-  <!-- Древо партнёров -->
-  <div class="section">
-    <div class="section-toggle"
-      onclick="toggleSection(this)">
-      <span class="section-toggle-title">
-        🌳 Древо партнёров
-      </span>
-      <span class="toggle-icon">▼</span>
+    <!-- Древо партнёров -->
+    <div class="module-card">
+        <div class="module-header accordion-toggle" onclick="toggleSection(this)">
+            🌳 Древо партнёров
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="module-body accordion-body" style="display:none;">
+            <div class="line-label">🔵 1 линия</div>
+            <div id="treeContainer">
+                <p style="color:#aaa;font-size:13px">
+                    Партнёры появятся после подключения
+                </p>
+            </div>
+        </div>
     </div>
-    <div class="section-body" id="treeBody">
-      <div class="line-label">🔵 1 линия</div>
-      <div id="treeContainer">
-        <p style="color:#aaa;font-size:13px">
-          Партнёры появятся после подключения
-        </p>
-      </div>
-    </div>
-  </div>
 
-  <!-- Условия партнёрки -->
-  <div class="section">
-    <div class="section-toggle"
-      onclick="toggleSection(this)">
-      <span class="section-toggle-title">
-        📄 Условия партнёрки
-      </span>
-      <span class="toggle-icon">▼</span>
+    <!-- Условия партнёрки -->
+    <div class="module-card">
+        <div class="module-header accordion-toggle" onclick="toggleSection(this)">
+            📄 Условия партнёрки
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="module-body accordion-body" style="display:none;">
+            <ul class="conditions-text">
+                <li>Реферальное вознаграждение — 10% с первой линии</li>
+                <li>5% со второй линии</li>
+                <li>3% с третьей линии</li>
+                <li>Выплаты начисляются автоматически при оплате партнёра</li>
+                <li>Без ограничения по количеству партнёров</li>
+            </ul>
+        </div>
     </div>
-    <div class="section-body">
-      <ul class="conditions-text">
-        <li>Реферальное вознаграждение — 10% с первой линии</li>
-        <li>5% со второй линии</li>
-        <li>3% с третьей линии</li>
-        <li>Выплаты начисляются автоматически при оплате партнёра</li>
-        <li>Без ограничения по количеству партнёров</li>
-      </ul>
-    </div>
-  </div>
 
-  <!-- Правила -->
-  <div class="section">
-    <div class="section-toggle"
-      onclick="toggleSection(this)">
-      <span class="section-toggle-title">
-        ℹ️ Правила партнёрки
-      </span>
-      <span class="toggle-icon">▼</span>
+    <!-- Правила -->
+    <div class="module-card">
+        <div class="module-header accordion-toggle" onclick="toggleSection(this)">
+            ℹ️ Правила партнёрки
+            <span class="toggle-icon">▼</span>
+        </div>
+        <div class="module-body accordion-body" style="display:none;">
+            <ul class="conditions-text">
+                <li>Запрещено использование спама и вводящей в заблуждение рекламы</li>
+                <li>Выплаты начисляются только с реальных оплат</li>
+                <li>Реферал должен зарегистрироваться через вашу ссылку</li>
+                <li>Права на комиссию сохраняются при повторных оплатах</li>
+                <li>Нарушение правил ведёт к отключению от партнёрки</li>
+            </ul>
+        </div>
     </div>
-    <div class="section-body">
-      <ul class="conditions-text">
-        <li>Запрещено использование спама и вводящей в заблуждение рекламы</li>
-        <li>Выплаты начисляются только с реальных оплат</li>
-        <li>Реферал должен зарегистрироваться через вашу ссылку</li>
-        <li>Права на комиссию сохраняются при повторных оплатах</li>
-        <li>Нарушение правил ведёт к отключению от партнёрки</li>
-      </ul>
-    </div>
-  </div>
 
 </div><!-- .page -->
 
 <script>
-  const tg = window.Telegram.WebApp;
-  tg.ready();
-  const user = tg.initDataUnsafe.user;
-  const userId = user ? user.id : 'demo';
-  const botName = 'your_bot';
-  const refUrl =
-    'https://t.me/' + botName + '?start=' + userId;
-  document.getElementById('refLink')
-    .textContent = refUrl;
+    const tg = window.Telegram.WebApp;
+    tg.ready();
 
-  function copyRef() {
-    navigator.clipboard.writeText(refUrl)
-      .then(() => tg.showAlert('Ссылка скопирована!'))
-      .catch(() => tg.showAlert(refUrl));
-  }
-
-  function toggleSection(header) {
-    const body = header.nextElementSibling;
-    const icon = header.querySelector('.toggle-icon');
-    body.classList.toggle('open');
-    icon.classList.toggle('open');
-  }
-
-  // Демо-данные древа (затем заменить n8n данными)
-  const demoTree = [
-    { name: 'Иван П.', init: 'И', line: 1,
-      children: [
-        { name: 'Мария С.', init: 'М', line: 2,
-          children: [
-            { name: 'Алексей К.', init: 'А', line: 3,
-              children: [] }
-          ]
-        },
-        { name: 'Дмитрий В.', init: 'Д', line: 2,
-          children: [] }
-      ]
+    function copyRef() {
+        const link = document.getElementById('refLink').textContent.trim();
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(link)
+                .then(() => {
+                    tg.showAlert('Ссылка скопирована!');
+                });
+        }
     }
-  ];
 
-  function buildTree(nodes, container) {
-    nodes.forEach(node => {
-      const wrap = document.createElement('div');
-      wrap.className = 'tree-node';
-      const hasChildren = node.children.length > 0;
-      const row = document.createElement('div');
-      row.className = 'tree-row';
-      row.innerHTML =
-        '<div class="tree-avatar">' + node.init + '</div>'
-        + '<span class="tree-name">' + node.name + '</span>'
-        + '<span class="tree-badge">' + node.line + ' л.</span>'
-        + (hasChildren
-          ? '<span class="tree-arrow">▶</span>' : '');
-      wrap.appendChild(row);
-      if (hasChildren) {
-        const ch = document.createElement('div');
-        ch.className = 'tree-children';
-        buildTree(node.children, ch);
-        wrap.appendChild(ch);
-        row.addEventListener('click', () => {
-          ch.classList.toggle('open');
-          row.querySelector('.tree-arrow')
-            .classList.toggle('open');
-        });
-      }
-      container.appendChild(wrap);
-    });
-  }
-
-  // Счетчики по линиям
-  function countLines(nodes, counts) {
-    nodes.forEach(n => {
-      counts[n.line] = (counts[n.line] || 0) + 1;
-      if (n.children.length)
-        countLines(n.children, counts);
-    });
-  }
-  const counts = {};
-  countLines(demoTree, counts);
-  document.getElementById('cnt1').textContent =
-    counts[1] || 0;
-  document.getElementById('cnt2').textContent =
-    counts[2] || 0;
-  document.getElementById('cnt3').textContent =
-    counts[3] || 0;
-  const total = Object.values(counts)
-    .reduce((a, b) => a + b, 0);
-  document.getElementById('cntAll').textContent =
-    total;
-
-  // Рендер древа
-  const container =
-    document.getElementById('treeContainer');
-  container.innerHTML = '';
-  buildTree(demoTree, container);
+    function toggleSection(header) {
+        const body = header.nextElementSibling;
+        const icon = header.querySelector('.toggle-icon');
+        if (body.style.display === 'none') {
+            body.style.display = 'block';
+            icon.textContent = '▲';
+        } else {
+            body.style.display = 'none';
+            icon.textContent = '▼';
+        }
+    }
 </script>
 </body>
 </html>
