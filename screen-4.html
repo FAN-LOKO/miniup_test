@@ -3,25 +3,112 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI FIT CENTER — Экран 4</title>
+    <title>AI FIT CENTER — Профиль</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="config/themeConfig.js"></script>
 </head>
 <body>
+    <!-- Block: AppRoot -->
     <div class="app">
-        <div class="screen4">
-            <h1>Статистика</h1>
-            <p>Диалоги, Реферальная ссылка</p>
+        <div class="screen-content">
+            <!-- Block: AgentProfileTitle -->
+            <h1 id="screenTitle">Профиль агента</h1>
+            
+            <!-- Block: AgentInfoCard -->
+            <div class="card">
+                <div class="agent-card-header">
+                    <div class="agent-avatar-placeholder" id="avatarPlaceholder">
+                        <span id="initials">AI</span>
+                    </div>
+                    <div class="agent-names">
+                        <h2 id="agentFullName">Имя Фамилия</h2>
+                        <span class="badge" id="agentRole">Агент</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Block: AgentManagement -->
+            <div class="section-title">Управление</div>
+            <div class="card">
+                <div class="form-group">
+                    <label class="form-label">Язык интерфейса</label>
+                    <select class="form-input" id="languageSelect">
+                        <option value="ru">Русский</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-top: 12px;">
+                    <button class="action-button" id="sendTestMsg">Отправить тестовое сообщение</button>
+                </div>
+            </div>
         </div>
-        <div class="nav-buttons">
-            <a href="screen-3.html" class="nav-button nav-button--back">Назад</a>
-            <a href="screen-5.html" class="nav-button nav-button--next">Далее</a>
-                <!-- Block: Screen Navigation -->
-        <div class="screen-nav">
-            
-            
-            <a href="screen-1.html" class="screen-nav__button">Профиль</a>
-            <a href="screen-2.html" class="screen-nav__button">Агент</a>
+
+        <!-- Block: ScreenNavigation -->
+        <nav class="screen-nav">
+            <a href="screen-1.html" class="screen-nav__button">Главная</a>
+            <a href="screen-2.html" class="screen-nav__button">Бот</a>
             <a href="screen-3.html" class="screen-nav__button">Ссылки</a>
-            <a href="screen-4.html" class="screen-nav__button screen-nav__button--active">CRM</a>
-        </div>
+            <a href="screen-4.html" class="screen-nav__button screen-nav__button--active">Профиль</a>
+            <a href="screen-5.html" class="screen-nav__button">Статистика</a>
+        </nav>
+    </div>
+
+    <style>
+        /* Styles: ScreenLayout */
+        .screen-content { padding: 16px; padding-bottom: 100px; }
+        #screenTitle { font-size: 22px; font-weight: 700; color: #0b3c78; margin-bottom: 20px; }
+        
+        /* Styles: AgentCard */
+        .card { background: #ffffff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 16px; margin-bottom: 20px; }
+        .agent-card-header { display: flex; align-items: center; gap: 16px; }
+        .agent-avatar-placeholder { 
+            width: 56px; height: 56px; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 20px;
+        }
+        .agent-names h2 { font-size: 18px; margin-bottom: 4px; color: #1a1a1a; }
+        .badge { font-size: 12px; padding: 2px 8px; background: #eef2ff; color: #3b82f6; border-radius: 99px; font-weight: 600; }
+        
+        /* Styles: ManagementSection */
+        .section-title { font-size: 14px; font-weight: 600; color: #6b7280; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group { margin-bottom: 12px; }
+        .form-label { display: block; font-size: 13px; color: #374151; margin-bottom: 6px; font-weight: 500; }
+        .form-input { width: 100%; padding: 10px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: #f9fafb; }
+        .action-button { 
+            width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; 
+            border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;
+        }
+        .action-button:active { transform: scale(0.98); opacity: 0.9; }
+    </style>
+
+    <script>
+        // THEME COLORS & CONFIG
+        document.addEventListener('DOMContentLoaded', () => {
+            const tg = window.Telegram.WebApp;
+            tg.ready();
+            tg.expand();
+
+            // Применяем тему из конфига
+            const avatarBg = themeConfig.screen1.avatarPlaceholderBg;
+            const avatarColor = themeConfig.screen1.avatarPlaceholderText;
+            const avatarEl = document.getElementById('avatarPlaceholder');
+            avatarEl.style.backgroundColor = avatarBg;
+            avatarEl.style.color = avatarColor;
+
+            // Заполнение данных (имитация)
+            const user = tg.initDataUnsafe?.user;
+            if (user) {
+                document.getElementById('agentFullName').textContent = `${user.first_name} ${user.last_name || ''}`;
+                const initials = (user.first_name[0] + (user.last_name ? user.last_name[0] : '')).toUpperCase();
+                document.getElementById('initials').textContent = initials;
+            }
+
+            document.getElementById('sendTestMsg').addEventListener('click', () => {
+                tg.HapticFeedback.impactOccurred('medium');
+                tg.showPopup({ message: 'Тестовое сообщение отправлено боту!' });
+            });
+        });
+    </script>
+</body>
+</html>
