@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Партнерка</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, sans-serif;
+      background: #f5f5f5;
+    }
+    .page { padding: 16px 16px 24px; }
+    .page-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a3a5c;
+      margin-bottom: 16px;
+    }
+    /* Реферальная ссылка */
+    .ref-card {
+      background: #1a3a5c;
+      color: white;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .ref-label {
+      font-size: 12px;
+      opacity: 0.75;
+      margin-bottom: 6px;
+    }
+    .ref-link-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ref-link {
+      flex: 1;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      word-break: break-all;
+    }
+    .btn-copy {
+      background: #f0a500;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    /* Статистика */
+    .stats-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .stat-card {
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .stat-header {
+      background: #1a3a5c;
+      color: white;
+      padding: 8px 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .stat-body {
+      padding: 12px 4px;
+    }
+    .stat-num {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a3a5c;
+    }
+    .stat-sub {
+      font-size: 11px;
+      color: #888;
+    }
+    /* Аккордеон секции */
+    .section {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .section-toggle {
+      background: #1a3a5c;
+      color: white;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-toggle-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .toggle-icon {
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+    .toggle-icon.open {
+      transform: rotate(180deg);
+    }
+    .section-body {
+      display: none;
+      padding: 14px 16px;
+    }
+    .section-body.open {
+      display: block;
+    }
+    /* Древо партнёров */
+    .line-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a3a5c;
+      margin-bottom: 8px;
+    }
+    .tree-node {
+      margin-left: 16px;
+      margin-bottom: 4px;
+    }
+    .tree-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 4px;
+      cursor: pointer;
+    }
+    .tree-row:hover {
+      background: #eef2f7;
+    }
+    .tree-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #1a3a5c;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .tree-name {
+      flex: 1;
+      font-size: 13px;
+      color: #333;
+    }
+    .tree-badge {
+      font-size: 11px;
+      color: #888;
+    }
+    .tree-arrow {
+      font-size: 10px;
+      color: #aaa;
+      transition: transform 0.2s;
+    }
+    .tree-arrow.open {
+      transform: rotate(90deg);
+    }
+    .tree-children {
+      display: none;
+    }
+    .tree-children.open {
+      display: block;
+    }
+    .conditions-text {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .conditions-text li {
+      margin-bottom: 6px;
+      margin-left: 16px;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1 class="page-title">🤝 Партнерка</h1>
+
+  <!-- Реферальная ссылка -->
+  <div class="ref-card">
+    <div class="ref-label">Ваша реферальная ссылка</div>
+    <div class="ref-link-row">
+      <div class="ref-link" id="refLink">
+        https://t.me/your_bot?start=...
+      </div>
+      <button class="btn-copy"
+        onclick="copyRef()">
+        Копировать
+      </button>
+    </div>
+  </div>
+
+  <!-- Статистика по линиям -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-header">1 линия</div>
+      <div class="stat-body">
+        <div class="stat-num" id="cnt1">0</div>
+        <div class="stat-sub">партнёров</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-header">2 линия</div>
+      <div class="stat-body">
+        <div class="stat-num" id="cnt2">0</div>
+        <div class="stat-sub">партнёров</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-header">3 линия</div>
+      <div class="stat-body">
+        <div class="stat-num" id="cnt3">0</div>
+        <div class="stat-sub">партнёров</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-header">Всего</div>
+      <div class="stat-body">
+        <div class="stat-num" id="cntAll">0</div>
+        <div class="stat-sub">человек</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Древо партнёров -->
+  <div class="section">
+    <div class="section-toggle"
+      onclick="toggleSection(this)">
+      <span class="section-toggle-title">
+        🌳 Древо партнёров
+      </span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-body" id="treeBody">
+      <div class="line-label">🔵 1 линия</div>
+      <div id="treeContainer">
+        <p style="color:#aaa;font-size:13px">
+          Партнёры появятся после подключения
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Условия партнёрки -->
+  <div class="section">
+    <div class="section-toggle"
+      onclick="toggleSection(this)">
+      <span class="section-toggle-title">
+        📄 Условия партнёрки
+      </span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-body">
+      <ul class="conditions-text">
+        <li>Реферальное вознаграждение — 10% с первой линии</li>
+        <li>5% со второй линии</li>
+        <li>3% с третьей линии</li>
+        <li>Выплаты начисляются автоматически при оплате партнёра</li>
+        <li>Без ограничения по количеству партнёров</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Правила -->
+  <div class="section">
+    <div class="section-toggle"
+      onclick="toggleSection(this)">
+      <span class="section-toggle-title">
+        ℹ️ Правила партнёрки
+      </span>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div class="section-body">
+      <ul class="conditions-text">
+        <li>Запрещено использование спама и вводящей в заблуждение рекламы</li>
+        <li>Выплаты начисляются только с реальных оплат</li>
+        <li>Реферал должен зарегистрироваться через вашу ссылку</li>
+        <li>Права на комиссию сохраняются при повторных оплатах</li>
+        <li>Нарушение правил ведёт к отключению от партнёрки</li>
+      </ul>
+    </div>
+  </div>
+
+</div><!-- .page -->
+
+<script>
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  const user = tg.initDataUnsafe.user;
+  const userId = user ? user.id : 'demo';
+  const botName = 'your_bot';
+  const refUrl =
+    'https://t.me/' + botName + '?start=' + userId;
+  document.getElementById('refLink')
+    .textContent = refUrl;
+
+  function copyRef() {
+    navigator.clipboard.writeText(refUrl)
+      .then(() => tg.showAlert('Ссылка скопирована!'))
+      .catch(() => tg.showAlert(refUrl));
+  }
+
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    body.classList.toggle('open');
+    icon.classList.toggle('open');
+  }
+
+  // Демо-данные древа (затем заменить n8n данными)
+  const demoTree = [
+    { name: 'Иван П.', init: 'И', line: 1,
+      children: [
+        { name: 'Мария С.', init: 'М', line: 2,
+          children: [
+            { name: 'Алексей К.', init: 'А', line: 3,
+              children: [] }
+          ]
+        },
+        { name: 'Дмитрий В.', init: 'Д', line: 2,
+          children: [] }
+      ]
+    }
+  ];
+
+  function buildTree(nodes, container) {
+    nodes.forEach(node => {
+      const wrap = document.createElement('div');
+      wrap.className = 'tree-node';
+      const hasChildren = node.children.length > 0;
+      const row = document.createElement('div');
+      row.className = 'tree-row';
+      row.innerHTML =
+        '<div class="tree-avatar">' + node.init + '</div>'
+        + '<span class="tree-name">' + node.name + '</span>'
+        + '<span class="tree-badge">' + node.line + ' л.</span>'
+        + (hasChildren
+          ? '<span class="tree-arrow">▶</span>' : '');
+      wrap.appendChild(row);
+      if (hasChildren) {
+        const ch = document.createElement('div');
+        ch.className = 'tree-children';
+        buildTree(node.children, ch);
+        wrap.appendChild(ch);
+        row.addEventListener('click', () => {
+          ch.classList.toggle('open');
+          row.querySelector('.tree-arrow')
+            .classList.toggle('open');
+        });
+      }
+      container.appendChild(wrap);
+    });
+  }
+
+  // Счетчики по линиям
+  function countLines(nodes, counts) {
+    nodes.forEach(n => {
+      counts[n.line] = (counts[n.line] || 0) + 1;
+      if (n.children.length)
+        countLines(n.children, counts);
+    });
+  }
+  const counts = {};
+  countLines(demoTree, counts);
+  document.getElementById('cnt1').textContent =
+    counts[1] || 0;
+  document.getElementById('cnt2').textContent =
+    counts[2] || 0;
+  document.getElementById('cnt3').textContent =
+    counts[3] || 0;
+  const total = Object.values(counts)
+    .reduce((a, b) => a + b, 0);
+  document.getElementById('cntAll').textContent =
+    total;
+
+  // Рендер древа
+  const container =
+    document.getElementById('treeContainer');
+  container.innerHTML = '';
+  buildTree(demoTree, container);
+</script>
+</body>
+</html>
