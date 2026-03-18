@@ -582,7 +582,7 @@ body {
     width: 100%;
     margin-top: 10px;
     padding: 10px;
-    background: #03d342;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -595,7 +595,7 @@ body {
 }
 
 .btn-open:hover {
-        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5), 0 3px 6px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         transform: translateY(-1px);
     }
 
@@ -830,13 +830,13 @@ body {
 }
 
 .btn-primary {
-    background: #03d242;
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     color: white;
         box-shadow: 0 4px 8px rgba(3, 210, 66, 0.3);
 }
 
 .btn-primary:hover {
-    background: #02b838;
+        background: linear-gradient(135deg, #38ef7d 0%, #11998e 100%);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(3, 210, 66, 0.3);
 }
@@ -858,26 +858,26 @@ body {
 
 /* Payment button */
 .btn-pay {
-        background: #10b981;
+            background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%);
         color: white;
         box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
 .btn-pay:hover {
-        background: #059669;
+            background: linear-gradient(135deg, #3cba92 0%, #0ba360 100%);
         box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5), 0 3px 6px rgba(0, 0, 0, 0.15);
         transform: translateY(-1px);
     }
 
 /* Logout button */
 .btn-logout {
-        background: #ef4444;
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
         color: white;
         box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
 .btn-logout:hover {
-        background: #dc2626;
+            background: linear-gradient(135deg, #f45c43 0%, #eb3349 100%);
         box-shadow: 0 6px 16px rgba(239, 68, 68, 0.5), 0 3px 6px rgba(0, 0, 0, 0.15);
         transform: translateY(-1px);
     }
