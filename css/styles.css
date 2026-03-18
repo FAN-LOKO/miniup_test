@@ -591,7 +591,13 @@ body {
     text-align: center;
     font-family: inherit;
     font-weight: 600;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.btn-open:hover {
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5), 0 3px 6px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+    }
 
 .btn-open:active {
     transform: scale(0.98);
@@ -849,6 +855,32 @@ body {
     width: 100%;
     display: block;
 }
+
+/* Payment button */
+.btn-pay {
+        background: #10b981;
+        color: white;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+.btn-pay:hover {
+        background: #059669;
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5), 0 3px 6px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+    }
+
+/* Logout button */
+.btn-logout {
+        background: #ef4444;
+        color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+.btn-logout:hover {
+        background: #dc2626;
+        box-shadow: 0 6px 16px rgba(239, 68, 68, 0.5), 0 3px 6px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+    }
 
 
 /* ==============================
