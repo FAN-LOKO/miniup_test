@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Главная — AI FIT CENTER</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="screen">
+      <div class="page">
+        <!-- 1. Профиль / Telegram -->
+        <section class="card-section" style="margin-bottom: 14px;">
+          <div class="card-section-header">
+            <h1 class="card-section-title">AI FIT CENTER</h1>
+            <p class="card-section-subtitle">
+              Ваш личный кабинет и AI‑модули
+            </p>
+          </div>
+          <div class="card-section-body">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 8px;
+              "
+            >
+              <!-- Аватар -->
+              <div
+                id="profileAvatar"
+                style="
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 999px;
+                  background: #3b82f6;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #ffffff;
+                  font-weight: 700;
+                  font-size: 18px;
+                  overflow: hidden;
+                  flex-shrink: 0;
+                "
+              >
+                <span id="profileAvatarInitial">A</span>
+              </div>
+
+              <!-- Имя / username -->
+              <div style="flex: 1;">
+                <div
+                  id="profileName"
+                  style="
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin-bottom: 2px;
+                  "
+                >
+                  Пользователь
+                </div>
+                <div
+                  id="profileUsername"
+                  style="
+                    font-size: 13px;
+                    color: #6b7280;
+                    margin-bottom: 2px;
+                  "
+                >
+                  @username
+                </div>
+                <div
+                  id="profileId"
+                  style="
+                    font-size: 12px;
+                    color: #9ca3af;
+                  "
+                >
+                  ID: —
+                </div>
+              </div>
+
+              <!-- Статус -->
+              <div
+                style="
+                  font-size: 12px;
+                  font-weight: 600;
+                  color: #10b981;
+                  text-align: right;
+                "
+              >
+                Активен
+              </div>
+            </div>
+
+            <div
+              style="
+                font-size: 11px;
+                color: #9ca3af;
+              "
+            >
+              Вход через Telegram WebApp. Данные подтягиваются из вашего профиля.
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. Мои модули (список статусов) -->
+        <section class="card-section">
+          <div class="card-section-header">
+            <h2 class="card-section-title">Мои модули</h2>
+            <p class="card-section-subtitle">
+              Статус доступа и быстрые действия
+            </p>
+          </div>
+          <div class="card-section-body">
+            <!-- Агент -->
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 2px;
+                  "
+                >
+                  Модуль «Агент»
+                </div>
+                <div
+                  id="agentDaysLeft"
+                  style="
+                    font-size: 12px;
+                    color: #6b7280;
+                  "
+                >
+                  Осталось 30 дней
+                </div>
+              </div>
+              <button
+                class="btn"
+  style="width: 110px;"
+  onclick="window.parent.postMessage({
+    type: 'navigate',
+    page: 'modules-agent/profile.html',
+    tab: 'modules'
+  }, '*')"
+              >
+                Открыть
+              </button>
+            </div>
+
+            <!-- Трафик (скоро) -->
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div>
+                <div
+                  style="
+                    font-size: 14px;
+                    font-weight: 600;
+                    margin-bottom: 2px;
+                  "
+                >
+                  Модуль «Трафик»
+                </div>
+                <div
+                  style="
+                    font-size: 12px;
+                    color: #9ca3af;
+                  "
+                >
+                  Скоро
+                </div>
+              </div>
+              <button
+                class="btn"
+  style="
+    width: 110px;
+    padding-inline: 0;
+    font-size: 12px;
+    opacity: 0.6;
+    cursor: not-allowed;
+                "
+                disabled
+              >
+                Скоро
+              </button>
+            </div>
+
+            <!-- Ссылки внизу -->
+            <div
+              style="
+                margin-top: 12px;
+                display: flex;
+                justify-content: space-between;
+                font-size: 12px;
+              "
+            >
+              <button
+                type="button"
+                onclick="navigateTo('modules.html','modules')"
+                style="
+                  background: none;
+                  border: none;
+                  padding: 0;
+                  color: #3b82f6;
+                  cursor: pointer;
+                  font-size: 12px;
+                "
+              >
+                Все модули →
+              </button>
+              <button
+                type="button"
+                onclick="navigateTo('payment.html','payment')"
+                style="
+                  background: none;
+                  border: none;
+                  padding: 0;
+                  color: #3b82f6;
+                  cursor: pointer;
+                  font-size: 12px;
+                "
+              >
+                Оплата и продление →
+              </button>
+            </div>
+          </div>
+        </section>
+                <!-- 3. Партнёрка (опциональная карточка) -->
+        <section class="card-section">
+          <div class="card-section-header">
+            <h2 class="card-section-title">Партнёрка</h2>
+            <p class="card-section-subtitle">
+              Зарабатывайте вместе с AI FIT CENTER
+            </p>
+          </div>
+          <div class="card-section-body">
+            <p
+              style="
+                margin: 0 0 8px;
+                font-size: 13px;
+                color: #6b7280;
+              "
+            >
+              Получайте вознаграждение за приглашённых клиентов и партнёров.
+            </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+              "
+            >
+              <span
+                style="
+                  font-size: 13px;
+                  color: #6b7280;
+                "
+              >
+                Баланс по партнёрке:
+              </span>
+              <span
+                style="
+                  font-size: 14px;
+                  font-weight: 600;
+                "
+              >
+                0 руб.
+              </span>
+            </div>
+            <button
+              class="btn btn-block"
+              onclick="navigateTo('partner.html','partner')"
+            >
+              Открыть партнёрку
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <script>
+      // Заполнение профиля из Telegram WebApp
+      (function fillProfileFromTelegram() {
+        try {
+          const tg = window.Telegram && window.Telegram.WebApp;
+          if (!tg || !tg.initDataUnsafe || !tg.initDataUnsafe.user) return;
+
+          const user = tg.initDataUnsafe.user;
+
+          const nameEl = document.getElementById("profileName");
+          const usernameEl = document.getElementById("profileUsername");
+          const idEl = document.getElementById("profileId");
+          const avatarEl = document.getElementById("profileAvatar");
+          const avatarInitialEl = document.getElementById(
+            "profileAvatarInitial"
+          );
+
+          const fullName =
+            [user.first_name, user.last_name].filter(Boolean).join(" ") ||
+            "Пользователь";
+          const username = user.username ? "@" + user.username : "@username";
+          const idText = user.id ? "ID: " + user.id : "ID: —";
+
+          if (nameEl) nameEl.textContent = fullName;
+          if (usernameEl) usernameEl.textContent = username;
+          if (idEl) idEl.textContent = idText;
+
+          // Инициал для аватара
+          if (avatarInitialEl && fullName) {
+            avatarInitialEl.textContent = fullName.trim().charAt(0) || "A";
+          }
+
+          // Если есть фото профиля, можно позже подставить <img> внутрь avatarEl
+          // (сейчас оставляем инициал + фон)
+        } catch (e) {
+          console.warn("Telegram profile not available", e);
+        }
+      })();
+
+      function openModule(moduleId) {
+        if (moduleId === "agent") {
+          window.parent.postMessage(
+            {
+              type: "navigate",
+              page: "modules-agent/home.html",
+              tab: "modules",
+            },
+            "*"
+          );
+        }
+      }
+
+      function navigateTo(page, tab) {
+        window.parent.postMessage(
+          {
+            type: "navigate",
+            page,
+            tab,
+          },
+          "*"
+        );
+      }
+
+      // Заглушка: когда появится backend, сюда можно подставлять реальное число оставшихся дней
+      // document.getElementById('agentDaysLeft').textContent = 'Осталось 27 дней';
+    </script>
+  </body>
+</html>

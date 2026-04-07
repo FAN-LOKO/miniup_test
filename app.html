@@ -1,160 +1,367 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
     <title>AI FIT CENTER</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
-    <style>
-        /* Styles: AppShell */
-        .app-shell {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            max-width: 480px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .app-content {
-            flex: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding-bottom: 70px;
-        }
-        .app-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-        /* Styles: BottomNav */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 480px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(0,0,0,0.08);
-            padding: 8px 4px;
-            z-index: 1000;
-            height: 64px;
-        }
-        .nav-btn {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px 2px;
-            border-radius: 10px;
-            transition: all 0.2s;
-            font-family: inherit;
-            color: #6b7280;
-            font-size: 11px;
-            font-weight: 500;
-                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        .nav-btn.active {
-            color: #3b82f6;
-        }
-
-                .nav-btn:hover {
-                                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-                                transform: translateY(-1px);
-                            }
-        .nav-btn svg {
-            width: 22px;
-            height: 22px;
-        }
-        .nav-btn.active svg path,
-        .nav-btn.active svg rect,
-        .nav-btn.active svg circle {
-            stroke: #3b82f6;
-        }
-    </style>
-</head>
-<body>
-    <!-- Block: AppShell -->
+  </head>
+  <body>
+  <div class="screen">
+    <!-- Оболочка miniapp -->
     <div class="app-shell">
-        <!-- Block: ContentArea -->
-        <div class="app-content" id="appContent">
-            <iframe id="pageFrame" class="app-iframe" src="pages/home.html" title="Content"></iframe>
+      <!-- Верхняя шапка -->
+      <div class="app-header">
+        <div class="app-header__left">
+          <span class="app-logo-text">Ai Fit Center</span>
         </div>
-        <!-- Block: BottomNavigation -->
-        <nav class="bottom-nav" id="bottomNav">
-            <!-- Главная -->
-            <button class="nav-btn active" data-page="pages/home.html" data-tab="home">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-                Главная
-            </button>
-            <!-- Модули -->
-            <button class="nav-btn" data-page="pages/modules.html" data-tab="modules">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                Модули
-            </button>
-            <!-- Партнерка -->
-            <button class="nav-btn" data-page="pages/partner.html" data-tab="partner">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-                Партнерка
-            </button>
-            <!-- Оплата -->
-            <button class="nav-btn" data-page="pages/payment.html" data-tab="payment">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                Оплата
-            </button>
-            <!-- Настройки -->
-            <button class="nav-btn" data-page="pages/settings.html" data-tab="settings">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-                Настройки
-            </button>
-        </nav>
+        <div class="app-header__right">
+          <button class="icon-button" id="notificationsButton">
+  <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5" />
+    <path d="M10 19a2 2 0 0 0 4 0" />
+  </svg>
+  <span class="notif-badge" id="notifBadge">3</span>
+</button>
+
+<button class="icon-button" id="settingsButton">
+  <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7z" />
+    <path d="M19.4 10.5h-1.1a6.5 6.5 0 0 0-.5-1.3l.8-.8a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0l-.8.8a6.5 6.5 0 0 0-1.3-.5V3.6a1 1 0 0 0-1-1h-2.2a1 1 0 0 0-1 1v1.1a6.5 6.5 0 0 0-1.3.5l-.8-.8a1 1 0 0 0-1.4 0L3.4 6a1 1 0 0 0 0 1.4l.8.8a6.5 6.5 0 0 0-.5 1.3H2.6a1 1 0 0 0-1 1v2.2a1 1 0 0 0 1 1h1.1a6.5 6.5 0 0 0 .5 1.3l-.8.8a1 1 0 0 0 0 1.4L5 20.6a1 1 0 0 0 1.4 0l.8-.8a6.5 6.5 0 0 0 1.3.5v1.1a1 1 0 0 0 1 1h2.2a1 1 0 0 0 1-1v-1.1a6.5 6.5 0 0 0 1.3-.5l.8.8a1 1 0 0 0 1.4 0l1.6-1.6a1 1 0 0 0 0-1.4l-.8-.8a6.5 6.5 0 0 0 .5-1.3h1.1a1 1 0 0 0 1-1v-2.2a1 1 0 0 0-1-1z" />
+  </svg>
+</button>
+
+        </div>
+      </div>
+
+      <!-- Контент: iframe с внутренними страницами -->
+      <div class="app-content" id="appContent">
+        <iframe
+          id="pageFrame"
+          src="home.html"
+          title="Content"
+        ></iframe>
+      </div>
     </div>
-    <!-- Block: NavigationLogic -->
-    <script>
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
-        const frame = document.getElementById('pageFrame');
-        const navBtns = document.querySelectorAll('.nav-btn');
-        let currentTab = 'home';
-        function navigate(page, tab) {
-            frame.src = page;
-            currentTab = tab;
-            navBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.tab === tab);
-            });
-            tg.HapticFeedback.selectionChanged();
-        }
-        navBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                navigate(btn.dataset.page, btn.dataset.tab);
-            });
-        });
-        // Block: CrossFrameNavigation
-        window.addEventListener('message', function(e) {
-            if (e.data && e.data.type === 'navigate') {
-                navigate(e.data.page, e.data.tab || currentTab);
-            }
-        });
-    </script>
+
+    <!-- Нижняя навигация -->
+<nav class="bottom-nav" id="bottomNav">
+  <!-- Главная -->
+  <button
+    class="nav-btn active"
+    data-page="home.html"
+    data-tab="home"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+    <span class="nav-btn-label">Главная</span>
+  </button>
+
+  <!-- Мой агент -->
+  <button
+    class="nav-btn"
+    data-page="my-agent.html"
+    data-tab="my-agent"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path d="M3 5h18v10H7l-4 4V5z" />
+    </svg>
+    <span class="nav-btn-label">Мой агент</span>
+  </button>
+
+  <!-- Общий чат -->
+  <button
+    class="nav-btn"
+    data-page="shared-chat.html"
+    data-tab="shared-chat"
+  >
+    <div class="nav-btn-icon-wrapper">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7A2.5 2.5 0 0 1 17.5 16H10l-4.5 4V16.5A2.5 2.5 0 0 1 4 14z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span
+        class="nav-btn-badge nav-btn-badge--dot"
+        id="sharedChatBadge"
+      ></span>
+    </div>
+    <span class="nav-btn-label">Общий чат</span>
+  </button>
+
+  <!-- Модули -->
+  <button
+    class="nav-btn"
+    data-page="modules.html"
+    data-tab="modules"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <rect x="3" y="3" width="7" height="7" />
+      <rect x="14" y="3" width="7" height="7" />
+      <rect x="3" y="14" width="7" height="7" />
+      <rect x="14" y="14" width="7" height="7" />
+    </svg>
+    <span class="nav-btn-label">Модули</span>
+  </button>
+
+  <!-- Партнёрка -->
+  <button
+    class="nav-btn"
+    data-page="partner.html"
+    data-tab="affiliate"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+    <span class="nav-btn-label">Партнёрка</span>
+  </button>
+
+  <!-- Оплата -->
+  <button
+    class="nav-btn"
+    data-page="payment.html"
+    data-tab="payments"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <rect x="1" y="4" width="22" height="16" rx="2" />
+      <line x1="1" y1="10" x2="23" y2="10" />
+    </svg>
+    <span class="nav-btn-label">Оплата</span>
+  </button>
+</nav>
+
+  <!-- Логика навигации -->
+  <script>
+  const tg = window.Telegram.WebApp;
+  tg.ready();
+  tg.expand();
+
+  const frame = document.getElementById("pageFrame");
+  const navBtns = document.querySelectorAll(".nav-btn");
+
+  // ===== КОНФИГ ФУНКЦИЙ / СТРАНИЦ =====
+  const APP_FEATURES = {
+    home: true,
+    myAgent: true,
+    modules: true,
+    sharedChat: true,
+    affiliate: true,
+    payments: true,
+    settings: true
+  };
+
+  // ===== ОПИСАНИЕ МАРШРУТОВ =====
+  const PAGE_CONFIG = {
+    home: {
+      page: "home.html",
+      enabled: () => APP_FEATURES.home
+    },
+    "my-agent": {
+      page: "my-agent.html",
+      enabled: () => APP_FEATURES.myAgent
+    },
+    modules: {
+      page: "modules.html",
+      enabled: () => APP_FEATURES.modules
+    },
+    "shared-chat": {
+      page: "shared-chat.html",
+      enabled: () => APP_FEATURES.sharedChat
+    },
+    affiliate: {
+      page: "partner.html",
+      enabled: () => APP_FEATURES.affiliate
+    },
+    payments: {
+      page: "payments.html",
+      enabled: () => APP_FEATURES.payments
+    },
+    settings: {
+      page: "settings.html",
+      enabled: () => APP_FEATURES.settings
+    }
+  };
+
+  let currentTab = "home";
+
+  function isTabEnabled(tab) {
+    return !!PAGE_CONFIG[tab] && PAGE_CONFIG[tab].enabled();
+  }
+
+  function getFallbackTab() {
+    const fallbackOrder = ["home", "my-agent", "modules", "shared-chat", "payments"];
+    return fallbackOrder.find((tab) => isTabEnabled(tab)) || "home";
+  }
+
+  function getPageByTab(tab) {
+    if (!PAGE_CONFIG[tab]) return null;
+    return PAGE_CONFIG[tab].page;
+  }
+
+  function getTabByPage(page) {
+    for (const [tab, config] of Object.entries(PAGE_CONFIG)) {
+      if (config.page === page) return tab;
+    }
+    return null;
+  }
+
+  function updateNavVisibility() {
+    navBtns.forEach((btn) => {
+      const tab = btn.dataset.tab;
+      const enabled = isTabEnabled(tab);
+      btn.style.display = enabled ? "" : "none";
+    });
+  }
+
+  function updateActiveNav() {
+    navBtns.forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.tab === currentTab);
+    });
+  }
+
+  function navigate(page, tab) {
+    let targetTab = tab || getTabByPage(page) || currentTab;
+
+    if (!isTabEnabled(targetTab)) {
+      targetTab = getFallbackTab();
+      page = getPageByTab(targetTab);
+    }
+
+    if (!page) {
+      page = getPageByTab(targetTab);
+    }
+
+    if (frame && page) {
+      frame.src = page;
+    }
+
+    currentTab = targetTab;
+    updateActiveNav();
+
+    if (tg.HapticFeedback && tg.HapticFeedback.selectionChanged) {
+      tg.HapticFeedback.selectionChanged();
+    }
+
+    // Если пользователь открыл общий чат — убираем индикатор непрочитанных
+    if (currentTab === "shared-chat") {
+      const badge = document.getElementById("sharedChatBadge");
+      if (badge) {
+        badge.style.display = "none";
+      }
+    }
+  }
+
+  // Клики по нижней навигации
+  navBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tab = btn.dataset.tab;
+
+      if (!isTabEnabled(tab)) return;
+
+      const page = btn.dataset.page || getPageByTab(tab);
+      navigate(page, tab);
+    });
+  });
+
+  // Навигация из внутренних страниц
+  window.addEventListener("message", function (e) {
+    const data = e.data;
+    if (!data || typeof data !== "object") return;
+
+    if (data.type === "navigate") {
+      const targetTab = data.tab || getTabByPage(data.page) || currentTab;
+
+      if (!isTabEnabled(targetTab)) {
+        navigate(getPageByTab(getFallbackTab()), getFallbackTab());
+        return;
+      }
+
+      navigate(data.page, targetTab);
+      return;
+    }
+
+    // Индикатор непрочитанных в Общем чате
+    if (data.type === "shared-chat-unread") {
+      const badge = document.getElementById("sharedChatBadge");
+      if (!badge) return;
+
+      if (currentTab === "shared-chat") {
+        badge.style.display = "none";
+        return;
+      }
+
+      badge.style.display = data.hasUnread ? "block" : "none";
+      return;
+    }
+  });
+
+  // Инициализация
+  document.addEventListener("DOMContentLoaded", function () {
+    const settingsButton = document.getElementById("settingsButton");
+    const notificationsButton = document.getElementById("notificationsButton");
+
+    updateNavVisibility();
+
+    const initialTab = isTabEnabled("home") ? "home" : getFallbackTab();
+    navigate(getPageByTab(initialTab), initialTab);
+
+    if (settingsButton) {
+      settingsButton.addEventListener("click", function () {
+        if (!isTabEnabled("settings")) return;
+        navigate(getPageByTab("settings"), "settings");
+      });
+    }
+
+    if (notificationsButton) {
+      notificationsButton.addEventListener("click", function () {
+        window.Telegram?.WebApp?.HapticFeedback?.notificationOccurred?.("success");
+        // TODO: отдельный экран уведомлений
+      });
+    }
+  });
+</script>
 </body>
+
+
 </html>

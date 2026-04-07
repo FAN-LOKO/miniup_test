@@ -1,107 +1,227 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <!-- index.html — Экран 0 (авторизация + согласия) -->
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI FIT CENTER — Авторизация</title>
+    <title>AI FIT CENTER — Старт</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="config/themeConfig.js"></script>
     <link rel="stylesheet" href="css/styles.css" />
-        <link rel="stylesheet" href="css/screen0.css" />
-</head>
-<body>
-    <!-- Block: App Container -->
-    <div class="app">
+  </head>
+  <body>
+    <div class="screen">
+      <div class="page">
+        <!-- Стартовая карточка авторизации -->
+        <section class="card-section">
+          <div class="card-section-header" style="text-align:center;">
+  <h1
+    class="card-section-title"
+    style="
+      font-size: 60px;
+      font-weight: 800;
+      line-height: 1.05;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    "
+  >
+    <!-- AI -->
+    <span
+      style="
+        display:block;
+        color:#f9fafb;
+        text-shadow:
+          0 3px 0 rgba(15,23,42,0.9),
+          0 8px 18px rgba(15,23,42,0.7);
+      "
+    >
+      AI
+    </span>
 
-        <!-- Block: Screen0 - Авторизация + Согласия -->
-        <div class="screen0">
+    <!-- FIT (алый) -->
+    <span
+      style="
+        display:block;
+        color:#ef4444; /* приятный алый */
+        text-shadow:
+          0 3px 0 rgba(15,23,42,0.9),
+          0 8px 18px rgba(15,23,42,0.7);
+      "
+    >
+      FIT
+    </span>
 
-            <!-- Block: Header -->
-            <div class="screen0__header">
-                <h1 class="screen0__title" id="appTitle">AI FIT CENTER</h1>
-                <p class="screen0__subtitle" id="appSubtitle">Добро пожаловать!</p>
+    <!-- CENTER -->
+    <span
+      style="
+        display:block;
+        color:#f9fafb;
+        text-shadow:
+          0 3px 0 rgba(15,23,42,0.9),
+          0 8px 18px rgba(15,23,42,0.7);
+      "
+    >
+      CENTER
+    </span>
+  </h1>
+
+  <p
+    class="card-section-subtitle"
+    style="
+      margin: 0;
+      font-size: 15px;
+      opacity: 0.95;
+    "
+  >
+    Добро пожаловать!
+  </p>
+</div>
+
+
+          <div class="card-section-body">
+            <div
+              style="
+                font-size: 13px;
+                color: #6b7280;
+                margin-bottom: 14px;
+              "
+            >
+              Перед началом работы подтвердите согласие с политикой
+              конфиденциальности и обработкой персональных данных.
             </div>
 
-            <!-- Block: Consent Form -->
-            <form class="screen0__form" id="consentForm">
+            <!-- Чекбоксы согласий -->
+            <label
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 10px 12px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+                margin-bottom: 10px;
+                cursor: pointer;
+                font-size: 13px;
+                color: #374151;
+              "
+            >
+              <input
+                id="privacyCheckbox"
+                type="checkbox"
+                style="
+                  margin-top: 2px;
+                  width: 18px;
+                  height: 18px;
+                  cursor: pointer;
+                "
+              />
+              <span>
+                Согласен с
+                <a
+                  href="#"
+                  style="color:#3b82f6; text-decoration: underline;"
+                  target="_blank"
+                >
+                  политикой конфиденциальности
+                </a>
+              </span>
+            </label>
 
-                <!-- Checkbox 1: Политика конфиденциальности -->
-                <label class="screen0__checkbox-label">
-                    <input type="checkbox" id="privacyCheckbox" class="screen0__checkbox" required />
-                    <span class="screen0__checkbox-text">
-                        Согласен с
-                        <a href="#" class="screen0__link">политикой конфиденциальности</a>
-                    </span>
-                </label>
+            <label
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                padding: 10px 12px;
+                border-radius: 10px;
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+                margin-bottom: 16px;
+                cursor: pointer;
+                font-size: 13px;
+                color: #374151;
+              "
+            >
+              <input
+                id="dataCheckbox"
+                type="checkbox"
+                style="
+                  margin-top: 2px;
+                  width: 18px;
+                  height: 18px;
+                  cursor: pointer;
+                "
+              />
+              <span>
+                Согласен с обработкой персональных данных
+              </span>
+            </label>
 
-                <!-- Checkbox 2: Обработка персональных данных -->
-                <label class="screen0__checkbox-label">
-                    <input type="checkbox" id="dataProcessingCheckbox" class="screen0__checkbox" required />
-                    <span class="screen0__checkbox-text">
-                        Согласен с
-                        <a href="#" class="screen0__link">обработкой персональных данных</a>
-                    </span>
-                </label>
+            <!-- Кнопка авторизации -->
+            <button
+              id="startButton"
+              class="btn btn-primary btn-block"
+              disabled
+              style="opacity: 0.5; cursor: not-allowed;"
+            >
+              Авторизоваться
+            </button>
 
-                <!-- Block: Submit Button -->
-                <button type="submit" class="screen0__button" id="authButton" disabled>
-                    Авторизоваться
-                </button>
-
-            </form>
-
-        </div>
-
+            <div
+              style="
+                margin-top: 10px;
+                font-size: 11px;
+                color: #9ca3af;
+              "
+            >
+              Нажимая «Авторизоваться», вы разрешаете приложению использовать
+              данные вашего Telegram‑профиля для авторизации.
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
 
     <script>
-        // Инициализация Telegram WebApp
-        const tg = window.Telegram.WebApp;
+      const tg = window.Telegram && window.Telegram.WebApp;
+      if (tg && tg.ready) {
         tg.ready();
         tg.expand();
+      }
 
-        // Элементы
-        const privacyCheckbox = document.getElementById('privacyCheckbox');
-        const dataProcessingCheckbox = document.getElementById('dataProcessingCheckbox');
-        const authButton = document.getElementById('authButton');
-        const consentForm = document.getElementById('consentForm');
+      const privacyCheckbox = document.getElementById("privacyCheckbox");
+      const dataCheckbox = document.getElementById("dataCheckbox");
+      const startButton = document.getElementById("startButton");
 
-        // Проверка состояния чекбоксов
-        function checkForm() {
-            if (privacyCheckbox.checked && dataProcessingCheckbox.checked) {
-                authButton.disabled = false;
-                authButton.style.opacity = '1';
-                authButton.style.cursor = 'pointer';
-            } else {
-                authButton.disabled = true;
-                authButton.style.opacity = '0.5';
-                authButton.style.cursor = 'not-allowed';
-            }
+      function updateButtonState() {
+        const enabled =
+          privacyCheckbox.checked && dataCheckbox.checked;
+
+        startButton.disabled = !enabled;
+        if (enabled) {
+          startButton.style.opacity = "1";
+          startButton.style.cursor = "pointer";
+        } else {
+          startButton.style.opacity = "0.5";
+          startButton.style.cursor = "not-allowed";
+        }
+      }
+
+      privacyCheckbox.addEventListener("change", updateButtonState);
+      dataCheckbox.addEventListener("change", updateButtonState);
+
+      startButton.addEventListener("click", function () {
+        if (startButton.disabled) return;
+
+        if (tg && tg.HapticFeedback && tg.HapticFeedback.impactOccurred) {
+          tg.HapticFeedback.impactOccurred("medium");
         }
 
-        // Слушатели изменений чекбоксов
-        privacyCheckbox.addEventListener('change', checkForm);
-        dataProcessingCheckbox.addEventListener('change', checkForm);
-
-        // Вызов при загрузке страницы
-        checkForm();
-
-        // Обработка отправки формы
-        consentForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Сохраняем согласия в localStorage
-            localStorage.setItem('privacyConsent', 'true');
-            localStorage.setItem('dataProcessingConsent', 'true');
-            localStorage.setItem('authorized', 'true');
-            // Переход на экран 1
-            window.location.href = 'screen-1.html';
-        });
-
-        // Проверка при загрузке - если уже авторизован, перенаправляем
-        if (localStorage.getItem('authorized') === 'true') {
-            window.location.href = 'screen-1.html';
-        }
+        // Переход в основную оболочку miniapp
+        window.location.href = "app.html";
+      });
     </script>
-</body>
+  </body>
 </html>

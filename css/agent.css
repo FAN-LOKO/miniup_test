@@ -1,0 +1,270 @@
+/* ВЕРХНИЕ ТАБЫ МОДУЛЯ АГЕНТ */
+.agent-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px 0;
+}
+
+.agent-tab {
+  padding: 8px 10px;
+  font-size: 13px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #374151;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* первые три таба — 1/3 строки */
+.agent-tab--third {
+  flex: 0 1 calc(33.333% - 8px);
+}
+
+/* последние два таба — 1/2 строки */
+.agent-tab--half {
+  flex: 0 1 calc(50% - 8px);
+}
+
+.agent-tab--active {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.35);
+}
+
+/* ПРОФИЛЬ АГЕНТА */
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+.profile-label {
+  color: #6b7280;
+  flex: 0 0 45%;
+}
+.profile-value {
+  text-align: right;
+  flex: 1;
+  font-weight: 500;
+  color: #111827;
+  word-break: break-all;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: #f3f4f6;
+}
+.status-offline {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+.status-online {
+  color: #166534;
+  background: #ecfdf3;
+}
+.card-section + .card-section {
+  margin-top: 16px;
+}
+.profile-select {
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 14px;
+  color: #111827;
+}
+.profile-value select {
+  text-align-last: right;
+}
+
+/* ПОДКЛЮЧЕНИЕ АГЕНТА */
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  padding: 8px 0;
+}
+.status-label {
+  color: #6b7280;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+.form-label {
+  display: block;
+  font-size: 13px;
+  color: #4b5563;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 14px;
+  color: #111827;
+}
+.connect-status-msg {
+  margin-top: 8px;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 500;
+}
+.connect-status-msg.success {
+  color: #166534;
+}
+.connect-status-msg.error {
+  color: #b91c1c;
+}
+
+.link-primary {
+  color: #2563eb;
+  text-decoration: none;
+  font-size: 14px;
+}
+.link-primary:hover {
+  text-decoration: underline;
+}
+
+
+/* АККОРДЕОН ДЛЯ МОДУЛЯ АГЕНТ */
+
+/* показываем/скрываем тело по классу .open */
+.accordion-card .accordion-body {
+  display: none;
+}
+.accordion-card .accordion-body.open {
+  display: block;
+}
+
+/* строка заголовка с текстом и стрелкой */
+.card-section.accordion-card .accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* текст заголовка занимает всё доступное место */
+.card-section.accordion-card .card-section-title {
+  flex: 1 1 auto;
+}
+
+/* простая текстовая стрелка внутри карточки */
+.card-section.accordion-card .accordion-icon {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
+  line-height: 1;
+  color: #ffffff;
+}
+
+/* Диалоги: список сообщений */
+.chat-messages {
+  max-height: 340px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Общий вид сообщения */
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+/* Метаданные: автор + время */
+.chat-message-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  color: #6b7280;
+}
+
+/* Пузырь сообщения */
+.chat-bubble {
+  display: inline-block;
+  padding: 8px 10px;
+  border-radius: 12px;
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+/* Сообщение клиента: синий фон, как бейджи/статусы */
+.chat-message-client .chat-bubble {
+  background: #e0ecff;
+  color: #0b3c78;
+}
+
+/* Сообщение агента: зелёный фон */
+.chat-message-agent .chat-bubble {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.dialog-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f9fafb;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.dialog-item:hover {
+  background: #eef2ff;
+}
+
+.dialog-item {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #e0ecff;        /* голубой фон, как у сообщений клиента */
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.dialog-item:hover {
+  background: #d1e3ff;        /* чуть темнее при наведении */
+}
+
+.dialog-item-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.dialog-user {
+  font-weight: 600;
+  color: #0b3c78;
+}
+
+.dialog-time {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.dialog-last-msg {
+  font-size: 13px;
+  color: #4b5563;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
